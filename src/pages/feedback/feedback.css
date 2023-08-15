@@ -1,0 +1,55 @@
+.feedback {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.feedback-wrapper {
+  padding-top: 20px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.logo {
+  background-color: #173d14;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.restaurant-name {
+  font-weight: bold;
+}
+
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feedback-description {
+  text-align: center;
+  margin: 20px;
+}
+
+.emoji-container {
+  display: flex;
+  width: 90%;
+  justify-content: space-evenly;
+  margin: 5px;
+}
+
+.angry-emoji,
+.frown-emoji,
+.neutral-emoji,
+.laughing-emoji,
+.heart-emoji {
+  cursor: pointer;
+  text-align: center;
+}

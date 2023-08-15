@@ -1,0 +1,24 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  bottom: 10px;
+}
+
+.red-text {
+  color: #ff3637;
+  font-weight: bold;
+}
+
+.next-button {
+  padding: 15px;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 20px;
+  background-color: #ff3637;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
