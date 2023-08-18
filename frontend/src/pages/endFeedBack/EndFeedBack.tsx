@@ -1,8 +1,9 @@
 import "./endfeedback.css";
 
-import Navigation from "../../components/shared/Navigation";
+import Button from "../../components/shared/Button";
 import { PiHeartStraightLight } from "react-icons/pi";
 import Title from "../../components/shared/Title";
+import TradeMark from "../../components/shared/TradeMark";
 
 const EndFeedBack = () => {
   return (
@@ -15,7 +16,10 @@ const EndFeedBack = () => {
         <p>You make us feel very special.</p>
       </div>
 
-      <Navigation btnVersion="secondary" btnText="Submit another feedback" />
+      <div className="navigation">
+        <Button version="secondary" btnText="Submit another feedback" />
+        <TradeMark />
+      </div>
     </div>
   );
 };

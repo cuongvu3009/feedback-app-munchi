@@ -1,9 +1,10 @@
 import "./successfeedback.css";
 
+import Button from "../../components/shared/Button";
 import Emoji from "../../components/shared/Emoji";
 import { GrStatusGood } from "react-icons/gr";
-import Navigation from "../../components/shared/Navigation";
 import Title from "../../components/shared/Title";
+import TradeMark from "../../components/shared/TradeMark";
 
 const tipOptions = [
   { text: "0€", value: 0, symbol: "😄" },
@@ -11,6 +12,10 @@ const tipOptions = [
   { text: "3€", value: 3, symbol: "🤩" },
   { text: "5€", value: 5, symbol: "👏" },
 ];
+
+const handleChange = (e: any) => {
+  console.log(e.target.value);
+};
 
 const SuccessFeedback = () => {
   return (
@@ -38,7 +43,7 @@ const SuccessFeedback = () => {
                 id={option.symbol}
                 name="tip"
                 value={option.value}
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <label htmlFor={option.symbol}>
                 <Emoji symbol={option.symbol} label={option.symbol} size={25} />
@@ -51,7 +56,10 @@ const SuccessFeedback = () => {
         </ul>
       </div>
 
-      <Navigation btnVersion="secondary" btnText="Submit another feedback" />
+      <div className="navigation">
+        <Button version="secondary" btnText="Submit another feedback" />
+        <TradeMark />
+      </div>
     </div>
   );
 };

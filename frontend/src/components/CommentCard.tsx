@@ -2,12 +2,14 @@ import { useContext, useState } from "react";
 
 import Button from "./shared/Button";
 import FeedbackContext from "../context/FeedbackContext";
+import { useNavigate } from "react-router-dom";
 
 const CommentCard = ({ emoji }: { emoji: string }) => {
   const { addFeedback } = useContext(FeedbackContext);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [comment, setComment] = useState("");
+  const navigate = useNavigate();
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -34,6 +36,7 @@ const CommentCard = ({ emoji }: { emoji: string }) => {
 
     // Close the popup
     closePopup();
+    navigate("/thankyou");
   };
 
   return (
@@ -56,12 +59,12 @@ const CommentCard = ({ emoji }: { emoji: string }) => {
               onChange={handleCommentChange}
               placeholder="Your comment here..."
             />
-            <Button type="submit" version="primary">
-              Save
-            </Button>
-            <Button onClick={closePopup} version="secondary">
-              Cancel
-            </Button>
+            <Button type="submit" version="primary" btnText="Save"></Button>
+            <Button
+              onClick={closePopup}
+              version="secondary"
+              btnText="Cancel"
+            ></Button>
           </form>
         </div>
       )}
