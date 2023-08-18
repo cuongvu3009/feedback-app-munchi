@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
+import axios from "axios";
+
 interface Feedback {
   id?: string;
   emoji: any;
@@ -30,26 +32,29 @@ export const FeedbackProvider = ({ children }: any) => {
 
   // Fetch feedback
   const fetchFeedback = async () => {
-    // const response = await fetch(`/feedback?_sort=id&_order=desc`);
-    // const data = await response.json();
-    // setFeedback(data);
-    // setIsLoading(false);
+    try {
+      const response = await axios.get(`/feedback`);
+      setFeedback(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("There was an error fetching data", error);
+      setIsLoading(false);
+    }
   };
 
   // Add feedback
   const addFeedback = async (newFeedback: Feedback) => {
-    // const response = await fetch("/feedback", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(newFeedback),
-    // });
+    try {
+      const response = await axios.post("/feedback", newFeedback, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-    // const data = await response.json();
-
-    // setFeedback([data, ...feedback]);
-    console.log(newFeedback);
+      setFeedback([response.data, ...feedback]);
+    } catch (error) {
+      console.error("There was an error sending the data", error);
+    }
   };
 
   return (

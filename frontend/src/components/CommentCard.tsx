@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import Button from "./shared/Button";
 import FeedbackContext from "../context/FeedbackContext";
 
-const CommentCard = ({ emoji }: any) => {
+const CommentCard = ({ emoji }: { emoji: string }) => {
   const { addFeedback } = useContext(FeedbackContext);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -26,10 +26,11 @@ const CommentCard = ({ emoji }: any) => {
 
     //	save it to the server
     const newFeedback = {
-      emoji,
       comment,
+      emoji,
     };
     addFeedback(newFeedback);
+    setComment("");
 
     // Close the popup
     closePopup();
