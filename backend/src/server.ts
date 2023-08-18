@@ -4,6 +4,7 @@ import connectDB from "./db/connectDB";
 import cors from "cors";
 import express from "express";
 import feedbackRoutes from "./feedback/feedback.route";
+import stripeRoutes from "./stripe/stripe.route";
 
 connectDB(process.env.MONGO_URI as string);
 
@@ -16,9 +17,7 @@ app.use(express.json());
 
 //	routes
 app.use("/feedback", feedbackRoutes);
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
+app.use("/charge", stripeRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);

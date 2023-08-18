@@ -7,6 +7,7 @@ import { GrStatusGood } from "react-icons/gr";
 import Title from "../../components/shared/Title";
 import TradeMark from "../../components/shared/TradeMark";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const tipOptions = [
   { text: "0€", value: 0, symbol: "😄" },
@@ -16,10 +17,12 @@ const tipOptions = [
 ];
 
 const SuccessFeedback = () => {
-  const { selectedTip, setSelectedTip } = useContext(FeedbackContext);
+  const { setSelectedTip } = useContext(FeedbackContext);
+  const naviagate = useNavigate();
 
   const handleChange = (e: any) => {
     setSelectedTip(e.target.value);
+    naviagate("/payment");
   };
 
   return (
