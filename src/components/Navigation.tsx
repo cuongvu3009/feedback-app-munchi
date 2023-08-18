@@ -1,7 +1,9 @@
+import Button from "./shared/Button";
+
 const Navigation = () => {
   return (
     <div className="navigation">
-      <button className="next-button">Next</button>
+      <Button version="btn btn-full">Next</Button>
       <p>
         Powered by <span className="red-text">munchi</span>
       </p>
