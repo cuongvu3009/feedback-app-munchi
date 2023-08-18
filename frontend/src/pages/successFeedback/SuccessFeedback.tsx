@@ -2,9 +2,11 @@ import "./successfeedback.css";
 
 import Button from "../../components/shared/Button";
 import Emoji from "../../components/shared/Emoji";
+import FeedbackContext from "../../context/FeedbackContext";
 import { GrStatusGood } from "react-icons/gr";
 import Title from "../../components/shared/Title";
 import TradeMark from "../../components/shared/TradeMark";
+import { useContext } from "react";
 
 const tipOptions = [
   { text: "0€", value: 0, symbol: "😄" },
@@ -13,11 +15,13 @@ const tipOptions = [
   { text: "5€", value: 5, symbol: "👏" },
 ];
 
-const handleChange = (e: any) => {
-  console.log(e.target.value);
-};
-
 const SuccessFeedback = () => {
+  const { selectedTip, setSelectedTip } = useContext(FeedbackContext);
+
+  const handleChange = (e: any) => {
+    setSelectedTip(e.target.value);
+  };
+
   return (
     <div className="mobile">
       <Title />
