@@ -1,5 +1,5 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import FeedbackContext from "../context/FeedbackContext";
 import axios from "axios";
@@ -31,6 +31,7 @@ const CheckoutForm: React.FC = () => {
             amount: selectedTip * 100, // Amount in cents, must *100
             token: token.id,
           });
+
           navigate("/endfeedback");
         }
       } catch (error) {

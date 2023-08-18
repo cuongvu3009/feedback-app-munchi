@@ -2,10 +2,11 @@ import { useContext, useState } from "react";
 
 import Button from "./shared/Button";
 import FeedbackContext from "../context/FeedbackContext";
+import Spinner from "./shared/Spinner";
 import { useNavigate } from "react-router-dom";
 
 const CommentCard = ({ emoji }: { emoji: string }) => {
-  const { addFeedback } = useContext(FeedbackContext);
+  const { isLoading, addFeedback } = useContext(FeedbackContext);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [comment, setComment] = useState("");
@@ -38,6 +39,10 @@ const CommentCard = ({ emoji }: { emoji: string }) => {
     closePopup();
     navigate("/thankyou");
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

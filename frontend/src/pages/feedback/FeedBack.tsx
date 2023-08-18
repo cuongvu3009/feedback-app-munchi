@@ -26,7 +26,6 @@ const FeedBack: React.FC = () => {
       emoji,
     };
     addFeedback(newFeedback);
-
     navigate("/thankyou");
   }
 

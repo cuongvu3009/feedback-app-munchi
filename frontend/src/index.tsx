@@ -1,6 +1,7 @@
 import "./index.css";
 
 import App from "./App";
+import { FeedbackProvider } from "./context/FeedbackContext";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
@@ -9,6 +10,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <FeedbackProvider>
+      <App />
+    </FeedbackProvider>
   </React.StrictMode>
 );

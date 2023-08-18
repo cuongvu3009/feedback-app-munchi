@@ -11,6 +11,7 @@ interface Feedback {
 interface FeedbackContextProps {
   feedback: Feedback[];
   isLoading: boolean;
+  setIsLoading: (value: boolean) => void;
   addFeedback: (newFeedback: Feedback) => void;
   selectedTip: number | undefined;
   setSelectedTip: (value: number) => void;
@@ -19,6 +20,7 @@ interface FeedbackContextProps {
 const FeedbackContext = createContext<FeedbackContextProps>({
   feedback: [],
   isLoading: false,
+  setIsLoading: function (value: boolean): void {},
   addFeedback: function (newFeedback: Feedback): void {
     throw new Error("Function not implemented.");
   },
@@ -39,6 +41,8 @@ export const FeedbackProvider = ({ children }: any) => {
 
   // Fetch feedback
   const fetchFeedback = async () => {
+    setIsLoading(true);
+
     try {
       const response = await axios.get(`/feedback`);
       setFeedback(response.data);
@@ -51,6 +55,8 @@ export const FeedbackProvider = ({ children }: any) => {
 
   // Add feedback
   const addFeedback = async (newFeedback: Feedback) => {
+    setIsLoading(true);
+
     try {
       const response = await axios.post("/feedback", newFeedback, {
         headers: {
@@ -59,8 +65,10 @@ export const FeedbackProvider = ({ children }: any) => {
       });
 
       setFeedback([response.data, ...feedback]);
+      setIsLoading(false);
     } catch (error) {
       console.error("There was an error sending the data", error);
+      setIsLoading(false);
     }
   };
 
@@ -69,6 +77,7 @@ export const FeedbackProvider = ({ children }: any) => {
       value={{
         addFeedback,
         isLoading,
+        setIsLoading,
         feedback,
         selectedTip,
         setSelectedTip,

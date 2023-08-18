@@ -4,9 +4,11 @@ import CheckoutForm from "./components/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import EndFeedBack from "./pages/endFeedBack/EndFeedBack";
 import FeedBack from "./pages/feedback/FeedBack";
-import { FeedbackProvider } from "./context/FeedbackContext";
+import FeedbackContext from "./context/FeedbackContext";
+import NotFound from "./pages/NotFound";
 import SuccessFeedback from "./pages/successFeedback/SuccessFeedback";
 import { loadStripe } from "@stripe/stripe-js";
+import { useContext } from "react";
 
 //	stripe
 
@@ -15,13 +17,16 @@ const stripePromise = loadStripe(
 );
 
 function App() {
+  const { selectedTip } = useContext(FeedbackContext);
+  console.log(selectedTip);
   return (
-    <FeedbackProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<FeedBack />} />
-          <Route path="/thankyou" element={<SuccessFeedback />} />
-          <Route path="/endfeedback" element={<EndFeedBack />} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<FeedBack />} />
+        <Route path="/thankyou" element={<SuccessFeedback />} />
+        <Route path="/endfeedback" element={<EndFeedBack />} />
+
+        {selectedTip && (
           <Route
             path="/payment"
             element={
@@ -30,9 +35,12 @@ function App() {
               </Elements>
             }
           />
-        </Routes>
-      </Router>
-    </FeedbackProvider>
+        )}
+
+        {/* Keep this route at the bottom */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
