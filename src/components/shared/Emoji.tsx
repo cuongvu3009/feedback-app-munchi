@@ -1,11 +1,11 @@
-const Emoji = ({ symbol, label }: any) => {
+const Emoji = ({ symbol, label, size }: any) => {
   return (
     <span
       className="emoji"
       role="img"
       aria-label={label ? label : ""}
       aria-hidden={label ? label : ""}
-      style={{ fontSize: "35px" }}
+      style={{ fontSize: size }}
     >
       {symbol}
     </span>

@@ -28,7 +28,7 @@ const RatingSelect = ({ selected, setSelected }: any) => {
             disabled={selected}
           />
           <label htmlFor={option.value}>
-            <Emoji symbol={option.symbol} label={option.label} />
+            <Emoji symbol={option.symbol} label={option.label} size={35} />
           </label>
         </li>
       ))}

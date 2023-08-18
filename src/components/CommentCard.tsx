@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 
+import Button from "./shared/Button";
 import FeedbackContext from "../context/FeedbackContext";
 
 const CommentCard = ({ emoji }: any) => {
@@ -54,12 +55,12 @@ const CommentCard = ({ emoji }: any) => {
               onChange={handleCommentChange}
               placeholder="Your comment here..."
             />
-            <button type="submit" className="btn btn-primary">
+            <Button type="submit" version="primary">
               Save
-            </button>
-            <button onClick={closePopup} className="btn btn-secondary">
+            </Button>
+            <Button onClick={closePopup} version="secondary">
               Cancel
-            </button>
+            </Button>
           </form>
         </div>
       )}

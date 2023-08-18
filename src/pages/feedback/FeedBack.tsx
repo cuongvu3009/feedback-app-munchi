@@ -1,10 +1,10 @@
 import "./feedback.css";
 
 import CommentCard from "../../components/CommentCard";
-import Logo from "../../components/Logo";
-import Navigation from "../../components/Navigation";
+import Logo from "../../components/shared/Logo";
+import Navigation from "../../components/shared/Navigation";
 import RatingSelect from "../../components/RatingSelect";
-import Title from "../../components/Title";
+import Title from "../../components/shared/Title";
 import { useState } from "react";
 
 const FeedBack: React.FC = () => {
@@ -23,8 +23,8 @@ const FeedBack: React.FC = () => {
           </div>
         </div>
       </div>
-      <RatingSelect seleted={emoji} setSelected={setEmoji} />
 
+      <RatingSelect seleted={emoji} setSelected={setEmoji} />
       {emoji && <CommentCard emoji={emoji} />}
 
       <Navigation />
