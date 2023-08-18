@@ -17,12 +17,15 @@ const tipOptions = [
 ];
 
 const SuccessFeedback = () => {
-  const { setSelectedTip } = useContext(FeedbackContext);
-  const naviagate = useNavigate();
+  const { selectedTip, setSelectedTip } = useContext(FeedbackContext);
+  const navigate = useNavigate();
 
   const handleChange = (e: any) => {
-    setSelectedTip(e.target.value);
-    naviagate("/payment");
+    setSelectedTip(+e.target.value);
+  };
+
+  const handleClick = () => {
+    navigate("/payment");
   };
 
   return (
@@ -64,7 +67,16 @@ const SuccessFeedback = () => {
       </div>
 
       <div className="navigation">
-        <Button version="secondary" btnText="Submit another feedback" />
+        {selectedTip ? (
+          <Button version="full" btnText="Pay" onClick={handleClick} />
+        ) : (
+          <Button
+            version="secondary"
+            btnText="Submit another feedback"
+            onClick={() => navigate("/")}
+          />
+        )}
+
         <TradeMark />
       </div>
     </div>

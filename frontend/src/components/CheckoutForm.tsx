@@ -26,12 +26,13 @@ const CheckoutForm: React.FC = () => {
       console.error(error);
     } else {
       try {
-        const response = await axios.post("/charge", {
-          amount: selectedTip * 100, // Amount in cents
-          token: token.id,
-        });
-        navigate("/endfeedback");
-        console.log(response.data);
+        if (selectedTip) {
+          await axios.post("/charge", {
+            amount: selectedTip * 100, // Amount in cents, must *100
+            token: token.id,
+          });
+          navigate("/endfeedback");
+        }
       } catch (error) {
         console.error("There was an issue with the payment", error);
       }

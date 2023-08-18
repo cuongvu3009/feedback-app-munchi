@@ -4,8 +4,10 @@ import Button from "../../components/shared/Button";
 import { PiHeartStraightLight } from "react-icons/pi";
 import Title from "../../components/shared/Title";
 import TradeMark from "../../components/shared/TradeMark";
+import { useNavigate } from "react-router-dom";
 
 const EndFeedBack = () => {
+  const navigate = useNavigate();
   return (
     <div className="mobile">
       <Title />
@@ -17,7 +19,11 @@ const EndFeedBack = () => {
       </div>
 
       <div className="navigation">
-        <Button version="secondary" btnText="Submit another feedback" />
+        <Button
+          version="secondary"
+          btnText="Submit another feedback"
+          onClick={() => navigate("/")}
+        />
         <TradeMark />
       </div>
     </div>

@@ -12,7 +12,7 @@ interface FeedbackContextProps {
   feedback: Feedback[];
   isLoading: boolean;
   addFeedback: (newFeedback: Feedback) => void;
-  selectedTip: number;
+  selectedTip: number | undefined;
   setSelectedTip: (value: number) => void;
 }
 
@@ -22,7 +22,7 @@ const FeedbackContext = createContext<FeedbackContextProps>({
   addFeedback: function (newFeedback: Feedback): void {
     throw new Error("Function not implemented.");
   },
-  selectedTip: 0,
+  selectedTip: undefined,
   setSelectedTip: function (value: number): void {
     throw new Error("Function not implemented.");
   },
@@ -31,7 +31,7 @@ const FeedbackContext = createContext<FeedbackContextProps>({
 export const FeedbackProvider = ({ children }: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [feedback, setFeedback] = useState<Feedback[]>([]);
-  const [selectedTip, setSelectedTip] = useState<number>(0);
+  const [selectedTip, setSelectedTip] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     fetchFeedback();
