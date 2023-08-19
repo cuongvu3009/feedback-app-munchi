@@ -4,6 +4,7 @@ import Button from "../../components/shared/Button";
 import Emoji from "../../components/shared/Emoji";
 import FeedbackContext from "../../context/FeedbackContext";
 import { GrStatusGood } from "react-icons/gr";
+import PaymentButton from "../../components/shared/PaymentButton";
 import Title from "../../components/shared/Title";
 import TradeMark from "../../components/shared/TradeMark";
 import { useContext } from "react";
@@ -65,6 +66,8 @@ const SuccessFeedback = () => {
           ))}
         </ul>
       </div>
+
+      <PaymentButton btnText="Choose other amount" />
 
       <div className="navigation">
         {selectedTip ? (

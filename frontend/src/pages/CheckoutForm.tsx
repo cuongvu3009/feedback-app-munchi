@@ -22,21 +22,21 @@ const CheckoutForm: React.FC = () => {
 
     const { token, error } = await stripe.createToken(cardElement!);
 
-    if (error) {
-      console.error(error);
-    } else {
+    if (selectedTip && token) {
       try {
         if (selectedTip) {
-          await axios.post("/charge", {
+          await axios.post("/payment", {
             amount: selectedTip * 100, // Amount in cents, must *100
             token: token.id,
           });
-
           navigate("/endfeedback");
         }
       } catch (error) {
         console.error("There was an issue with the payment", error);
       }
+    }
+    if (error) {
+      console.error(error);
     }
   };
 

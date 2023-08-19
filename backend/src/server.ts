@@ -17,7 +17,7 @@ app.use(express.json());
 
 //	routes
 app.use("/feedback", feedbackRoutes);
-app.use("/charge", stripeRoutes);
+app.use("/payment", stripeRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
