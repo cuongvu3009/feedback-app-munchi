@@ -1,18 +1,11 @@
 import Emoji from "./shared/Emoji";
 import React from "react";
+import { ratingOptions } from "../utils/ratingOptions";
 
 const RatingSelect = ({ selected, setSelected }: any) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value);
   };
-
-  const ratingOptions = [
-    { value: "terrible", symbol: "😠", label: "terrible" },
-    { value: "bad", symbol: "🙁", label: "bad" },
-    { value: "okey", symbol: "🙂", label: "okey" },
-    { value: "good", symbol: "😄", label: "good" },
-    { value: "awesome", symbol: "😍", label: "awesome" },
-  ];
 
   return (
     <ul className="rating">

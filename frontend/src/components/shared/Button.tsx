@@ -1,12 +1,5 @@
+import { ButtonProps } from "../../types/feedback.types";
 import React from "react";
-
-interface ButtonProps {
-  version?: string;
-  type?: "submit" | "button" | "reset";
-  isDisabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  btnText?: string;
-}
 
 const Button: React.FC<ButtonProps> = ({
   version = "primary",

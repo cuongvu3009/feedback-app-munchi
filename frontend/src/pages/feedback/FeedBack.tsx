@@ -12,7 +12,7 @@ import TradeMark from "../../components/shared/TradeMark";
 import { useNavigate } from "react-router-dom";
 
 const FeedBack: React.FC = () => {
-  const [emoji, setEmoji] = useState("");
+  const [emoji, setEmoji] = useState<string>("");
   const navigate = useNavigate();
   const { addFeedback } = useContext(FeedbackContext);
 

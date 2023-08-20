@@ -1,27 +1,11 @@
+import {
+  Feedback,
+  FeedbackContextProps,
+  FeedbackCount,
+} from "../types/feedback.types";
 import { createContext, useEffect, useState } from "react";
 
 import axios from "axios";
-
-interface Feedback {
-  id?: string;
-  createdAt?: Date | string;
-  emoji: any;
-  comment: string;
-}
-interface FeedbackCount {
-  type: string;
-  count: number | null;
-}
-
-interface FeedbackContextProps {
-  feedback: Feedback[];
-  isLoading: boolean;
-  setIsLoading: (value: boolean) => void;
-  addFeedback: (newFeedback: Feedback) => void;
-  selectedTip: number | undefined;
-  setSelectedTip: (value: number) => void;
-  feedbackCount: FeedbackCount[];
-}
 
 const FeedbackContext = createContext<FeedbackContextProps>({
   feedback: [],
