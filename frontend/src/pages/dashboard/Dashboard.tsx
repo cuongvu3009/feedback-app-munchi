@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 
 import Button from "../../components/shared/Button";
 import FeedbackContext from "../../context/FeedbackContext";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 const Dashboard = () => {
@@ -42,7 +43,9 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <h2 className="red-text">Munchi</h2>
+      <h2 className="red-text">
+        <Link to="/">Munchi</Link>
+      </h2>
       <div className="flex">
         <div className="dashboard-card dashboard-info">
           <h3>Average score</h3>
