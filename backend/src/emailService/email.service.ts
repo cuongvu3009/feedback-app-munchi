@@ -14,7 +14,7 @@ class EmailService {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: "webdev3009@gmail.com", // Email where you want to receive notifications
+      to: process.env.RECEIVER_EMAIL, // Email where you want to receive notifications
       subject: subject,
       text: text,
     };

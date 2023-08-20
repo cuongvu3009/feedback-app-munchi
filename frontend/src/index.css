@@ -309,6 +309,10 @@ img {
 
 /* Media query for small screen */
 @media (max-width: 768px) {
+  .mobile {
+    width: 100%;
+    border: none;
+  }
   .checkout-form {
     max-width: 90%;
     padding: 20px 10px;
