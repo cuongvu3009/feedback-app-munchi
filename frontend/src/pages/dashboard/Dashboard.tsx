@@ -20,11 +20,11 @@ const Dashboard = () => {
   };
 
   const scores: { [key: string]: number } = {
-    love: 5,
-    like: 4,
-    neutral: 3,
-    frown: 2,
-    angry: 1,
+    awesome: 5,
+    good: 4,
+    okey: 3,
+    bad: 2,
+    terrible: 1,
   };
 
   const validFeedbacks = feedbackCount.filter(
@@ -101,11 +101,13 @@ const Dashboard = () => {
           })}
 
           {/* Toggle between "See All" and "See Less" */}
-          <Button
-            btnText={feedbackLimit === 7 ? "See All" : "See Less"}
-            version="secondary"
-            onClick={handleToggleDisplay}
-          />
+          {feedback.length > 7 && (
+            <Button
+              btnText={feedbackLimit === 7 ? "See All" : "See Less"}
+              version="secondary"
+              onClick={handleToggleDisplay}
+            />
+          )}
         </div>
       </div>
     </div>

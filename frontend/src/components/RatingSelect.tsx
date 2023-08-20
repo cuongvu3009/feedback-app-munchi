@@ -7,11 +7,11 @@ const RatingSelect = ({ selected, setSelected }: any) => {
   };
 
   const ratingOptions = [
-    { value: "angry", symbol: "😠", label: "angry" },
-    { value: "frown", symbol: "🙁", label: "frown" },
-    { value: "neutral", symbol: "🙂", label: "neutral" },
-    { value: "like", symbol: "😄", label: "like" },
-    { value: "love", symbol: "😍", label: "love" },
+    { value: "terrible", symbol: "😠", label: "terrible" },
+    { value: "bad", symbol: "🙁", label: "bad" },
+    { value: "okey", symbol: "🙂", label: "okey" },
+    { value: "good", symbol: "😄", label: "good" },
+    { value: "awesome", symbol: "😍", label: "awesome" },
   ];
 
   return (

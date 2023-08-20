@@ -19,7 +19,7 @@ class FeedbackService {
   }
 
   static async countByType(): Promise<Array<{ type: string; count: number }>> {
-    const emojiTypes = ["love", "like", "neutral", "frown", "angry"];
+    const emojiTypes = ["awesome", "good", "okey", "bad", "terrible"];
 
     const feedbackCounts = await Promise.all(
       emojiTypes.map((emoji) => Feedback.countDocuments({ emoji }))
