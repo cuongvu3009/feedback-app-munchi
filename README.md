@@ -6,7 +6,7 @@
 
 ### **Overview**:
 
-The frontend of this project is a React application, utilizing the Stripe API for payment functionalities. The application also integrates various testing libraries and several other beneficial dependencies.
+The frontend of this project is a React application, utilizing the Stripe API for payment functionalities.
 
 ### **📦 Dependencies**:
 
@@ -23,12 +23,7 @@ The frontend of this project is a React application, utilizing the Stripe API fo
 
 - **React Ecosystem**:
 
-  - Core libraries: `react`, `react-dom`
   - Miscellaneous: `react-emojis`, `react-icons`, `react-router-dom`
-
-- **Development**:
-  - `react-scripts`: Configurations used by Create React App.
-  - `web-vitals`: Performance metrics library.
 
 ### **🔧 Scripts**:
 
