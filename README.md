@@ -98,3 +98,4 @@ The backend runs on a Node.js server, primarily built with Express. It interface
 5. For production: Build with `yarn run build`, then serve with `yarn run serve`.
 
 > **❗ Note**: Please note that paying tip using Apple Pay is only visible if user is using iOS or MacOS devices, and paying tip using Google Pay is only visiable if user is using Window or Android devices.
+> **❗ Note**: Please using this email service provider for nodemailer (https://mail.zoho.eu/), because email.service has been set up with it. There are emails for testing in .env.example in backend folder.
