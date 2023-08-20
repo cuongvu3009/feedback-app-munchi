@@ -3,8 +3,8 @@ import "dotenv/config";
 import connectDB from "./db/connectDB";
 import cors from "cors";
 import express from "express";
-import feedbackRoutes from "./feedback/feedback.route";
-import stripeRoutes from "./stripe/stripe.route";
+import feedbackRoutes from "./features/feedback/feedback.route";
+import stripeRoutes from "./features/stripe/stripe.route";
 
 connectDB(process.env.MONGO_URI as string);
 
