@@ -55,27 +55,27 @@ const Dashboard = () => {
 
           <div className="dashboard-answers">
             <div className="flex-between">
-              <p>Answered "Awesome"</p>
+              <p>Answered "Awesome" 😍</p>
               <p>{feedbackCount[0]?.count}</p>
             </div>
 
             <div className="flex-between">
-              <p>Answered "Good"</p>
+              <p>Answered "Good" 😄</p>
               <p>{feedbackCount[1]?.count}</p>
             </div>
 
             <div className="flex-between">
-              <p>Answered "Okey"</p>
+              <p>Answered "Okey" 🙂</p>
               <p>{feedbackCount[2]?.count}</p>
             </div>
 
             <div className="flex-between">
-              <p>Answered "Bad"</p>
+              <p>Answered "Bad" 🙁</p>
               <p>{feedbackCount[3]?.count}</p>
             </div>
 
             <div className="flex-between">
-              <p>Answered "Terrible"</p>
+              <p>Answered "Terrible" 😠</p>
               <p>{feedbackCount[4]?.count}</p>
             </div>
 

@@ -9,7 +9,7 @@ import ReactDOM from "react-dom/client";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
-  "pk_test_51KeKGIBuYhaJOtomcWf9SqJ2iKEazVKzYo6xRVTywYE3f8UUFQxYYK4AerD6UDqi79A7640zgwBOf24iIVIeRSy200XlpHliEO"
+  process.env.REACT_APP_PUBLIC_STRIPE_KEY as string
 );
 
 const root = ReactDOM.createRoot(
