@@ -1,12 +1,22 @@
 import "./dashboard.css";
 
+import { useContext, useState } from "react";
+
 import Button from "../../components/shared/Button";
 import FeedbackContext from "../../context/FeedbackContext";
 import moment from "moment";
-import { useContext } from "react";
 
 const Dashboard = () => {
   const { feedback, feedbackCount } = useContext(FeedbackContext);
+  const [feedbackLimit, setFeedbackLimit] = useState<number>(7);
+
+  const handleToggleDisplay = () => {
+    if (feedbackLimit === 7) {
+      setFeedbackLimit(feedback.length);
+    } else {
+      setFeedbackLimit(7);
+    }
+  };
 
   const scores: { [key: string]: number } = {
     love: 5,
@@ -78,7 +88,7 @@ const Dashboard = () => {
         <div className="dashboard-card dashboard-response">
           <h3>Responses</h3>
 
-          {feedback.map((item) => {
+          {feedback.slice(0, feedbackLimit).map((item) => {
             return (
               <div className="flex-between" key={item.id}>
                 <p>{item.emoji}</p>
@@ -87,7 +97,12 @@ const Dashboard = () => {
             );
           })}
 
-          <Button btnText="See All" version="secondary" />
+          {/* Toggle between "See All" and "See Less" */}
+          <Button
+            btnText={feedbackLimit === 7 ? "See All" : "See Less"}
+            version="secondary"
+            onClick={handleToggleDisplay}
+          />
         </div>
       </div>
     </div>

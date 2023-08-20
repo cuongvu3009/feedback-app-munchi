@@ -3,43 +3,50 @@
   margin: 0 auto;
 }
 
-.flex {
+.flex,
+.flex-between {
   display: flex;
-  gap: 10px;
   width: 100%;
+  gap: 10px;
+}
+
+.flex {
   justify-content: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+  padding: 0;
+}
+
+.dashboard-card,
+.dashboard-info {
+  height: fit-content;
+  padding: 10px;
+  width: 100%;
 }
 
 .dashboard-card {
   border: 1px groove #f3f3f3;
-  padding: 10px;
-  height: fit-content;
-  width: 100%;
-}
-
-.dashboard-info {
-  height: fit-content;
 }
 
 .dashboard-score {
   text-align: center;
 }
 
-.dashboard-answers {
-}
-
 .score {
   background-color: #dcfce7;
+  color: #20c662;
+  border-radius: 50%;
+  font-size: 50px;
   font-weight: bold;
   padding: 20px;
-  font-size: 50px;
-  border-radius: 50%;
-  color: #20c662;
   width: fit-content;
 }
 
-.flex-between {
-  display: flex;
-  justify-content: space-between;
-  padding: 0;
+/* Mobile styles */
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+  }
 }

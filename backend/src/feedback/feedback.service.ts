@@ -3,7 +3,7 @@ import { IFeedbackDocument } from "./feedback.interface";
 
 class FeedbackService {
   static async getAllFeedbacks(): Promise<IFeedbackDocument[]> {
-    return await Feedback.find();
+    return await Feedback.find().sort({ createdAt: -1 });
   }
 
   static async createFeedback(
