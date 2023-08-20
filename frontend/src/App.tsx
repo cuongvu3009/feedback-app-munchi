@@ -13,6 +13,7 @@ function App() {
         <Route path="/" element={<FeedBack />} />
         <Route path="/thankyou" element={<SuccessFeedback />} />
         <Route path="/endfeedback" element={<EndFeedBack />} />
+        {/* Legacy */}
         <Route path="/payment" element={<Checkout />} />
 
         {/* Keep this route at the bottom */}

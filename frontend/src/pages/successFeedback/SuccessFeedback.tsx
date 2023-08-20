@@ -11,11 +11,36 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const tipOptions = [
-  { text: "0€", value: 0, symbol: "😄" },
-  { text: "2€", value: 2, symbol: "😍" },
-  { text: "3€", value: 3, symbol: "🤩" },
-  { text: "5€", value: 5, symbol: "👏" },
+  { text: "0€", value: 0, symbol: "😄", paymentLink: "" },
+  {
+    text: "2€",
+    value: 2,
+    symbol: "😍",
+  },
+  {
+    text: "3€",
+    value: 3,
+    symbol: "🤩",
+  },
+  {
+    text: "5€",
+    value: 5,
+    symbol: "👏",
+  },
 ];
+
+const getLinkByTip = (tip: number): string => {
+  switch (tip) {
+    case 2:
+      return "https://buy.stripe.com/test_5kA7sEbyd85gaeA8wE";
+    case 3:
+      return "https://buy.stripe.com/test_14keV60Tz0CO4UgeV3";
+    case 5:
+      return "https://buy.stripe.com/test_8wM6oA6dT0CO86sfZ8";
+    default:
+      return "https://buy.stripe.com/test_6oE7sE7hX0COgCY149"; // tip amount up to customer
+  }
+};
 
 const SuccessFeedback = () => {
   const { selectedTip, setSelectedTip } = useContext(FeedbackContext);
@@ -23,10 +48,6 @@ const SuccessFeedback = () => {
 
   const handleChange = (e: any) => {
     setSelectedTip(+e.target.value);
-  };
-
-  const handleClick = () => {
-    navigate("/payment");
   };
 
   return (
@@ -67,11 +88,20 @@ const SuccessFeedback = () => {
         </ul>
       </div>
 
-      <PaymentButton btnText="Choose other amount" />
+      {/* getLinkByTip(0) will return default link */}
+      <PaymentButton
+        btnVersion="secondary"
+        btnText="Choose other amount"
+        paymentLink={getLinkByTip(0)}
+      />
 
       <div className="navigation">
         {selectedTip ? (
-          <Button version="full" btnText="Pay" onClick={handleClick} />
+          <PaymentButton
+            btnVersion="full"
+            btnText="Pay"
+            paymentLink={getLinkByTip(selectedTip)}
+          />
         ) : (
           <Button
             version="secondary"
