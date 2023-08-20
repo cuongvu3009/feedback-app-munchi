@@ -4,8 +4,13 @@ import axios from "axios";
 
 interface Feedback {
   id?: string;
+  createdAt?: Date | string;
   emoji: any;
   comment: string;
+}
+interface FeedbackCount {
+  type: string;
+  count: number | null;
 }
 
 interface FeedbackContextProps {
@@ -15,6 +20,7 @@ interface FeedbackContextProps {
   addFeedback: (newFeedback: Feedback) => void;
   selectedTip: number | undefined;
   setSelectedTip: (value: number) => void;
+  feedbackCount: FeedbackCount[];
 }
 
 const FeedbackContext = createContext<FeedbackContextProps>({
@@ -28,14 +34,17 @@ const FeedbackContext = createContext<FeedbackContextProps>({
   setSelectedTip: function (value: number): void {
     throw new Error("Function not implemented.");
   },
+  feedbackCount: [],
 });
 
 export const FeedbackProvider = ({ children }: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [feedback, setFeedback] = useState<Feedback[]>([]);
+  const [feedbackCount, setFeedbackCount] = useState<FeedbackCount[]>([]);
   const [selectedTip, setSelectedTip] = useState<number | undefined>(undefined);
 
   useEffect(() => {
+    fetchFeedbackCount();
     fetchFeedback();
   }, []);
 
@@ -46,6 +55,20 @@ export const FeedbackProvider = ({ children }: any) => {
     try {
       const response = await axios.get(`/feedback`);
       setFeedback(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("There was an error fetching data", error);
+      setIsLoading(false);
+    }
+  };
+
+  // Fetch feedback count
+  const fetchFeedbackCount = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await axios.get(`/feedback/count`);
+      setFeedbackCount(response.data);
       setIsLoading(false);
     } catch (error) {
       console.error("There was an error fetching data", error);
@@ -81,6 +104,7 @@ export const FeedbackProvider = ({ children }: any) => {
         feedback,
         selectedTip,
         setSelectedTip,
+        feedbackCount,
       }}
     >
       {children}
