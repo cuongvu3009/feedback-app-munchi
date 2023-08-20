@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 
+import EmailService from "../emailService/email.service";
 import FeedbackService from "./feedback.service";
 
 class FeedbackController {
@@ -7,6 +8,13 @@ class FeedbackController {
     try {
       const { emoji, comment } = req.body;
       const feedback = await FeedbackService.createFeedback(emoji, comment);
+
+      // Send email notification
+      const info = await EmailService.sendEmail(
+        "New Feedback Created",
+        `Hello there! You got the a new feedback from client. Emoji: ${emoji}, Comment: ${comment}`
+      );
+      console.log("Message sent: %s", info);
       res.status(201).json(feedback);
     } catch (error) {
       res.status(500).json({ error: "Internal Server Error" });
