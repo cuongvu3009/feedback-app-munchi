@@ -17,6 +17,8 @@ export interface FeedbackContextProps {
   selectedTip: number | undefined;
   setSelectedTip: (value: number) => void;
   feedbackCount: FeedbackCount[];
+  commentTags: string[];
+  setCommentTags: (value: string[]) => void;
 }
 
 export interface ButtonProps {

@@ -6,12 +6,12 @@ import Spinner from "../shared/Spinner";
 import { useNavigate } from "react-router-dom";
 
 const CommentCard = ({ emoji }: { emoji: string }) => {
-  const { isLoading, addFeedback } = useContext(FeedbackContext);
+  const { commentTags, isLoading, addFeedback } = useContext(FeedbackContext);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const navigate = useNavigate();
 
-  const commentInputRef = useRef<HTMLInputElement>(null); // Create a ref for the input element
+  const commentInputRef = useRef<HTMLInputElement>(null);
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -37,10 +37,11 @@ const CommentCard = ({ emoji }: { emoji: string }) => {
       return;
     }
 
-    // Save it to the server
+    // Save feedback to the server
     const newFeedback = {
       comment,
       emoji,
+      tags: commentTags,
     };
     addFeedback(newFeedback);
 

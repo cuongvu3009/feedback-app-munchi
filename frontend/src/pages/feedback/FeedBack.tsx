@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 const FeedBack: React.FC = () => {
   const [emoji, setEmoji] = useState<string>("");
   const navigate = useNavigate();
-  const { addFeedback } = useContext(FeedbackContext);
+  const { commentTags, addFeedback } = useContext(FeedbackContext);
 
   function handleClick(e: any): void {
     e.preventDefault();
@@ -25,6 +25,7 @@ const FeedBack: React.FC = () => {
     const newFeedback = {
       comment,
       emoji,
+      tags: commentTags,
     };
     addFeedback(newFeedback);
     navigate("/thankyou");

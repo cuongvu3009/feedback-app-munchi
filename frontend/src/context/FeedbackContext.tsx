@@ -19,11 +19,16 @@ const FeedbackContext = createContext<FeedbackContextProps>({
     throw new Error("Function not implemented.");
   },
   feedbackCount: [],
+  commentTags: [],
+  setCommentTags: function (value: string[]): void {
+    throw new Error("Function not implemented.");
+  },
 });
 
 export const FeedbackProvider = ({ children }: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [feedback, setFeedback] = useState<Feedback[]>([]);
+  const [commentTags, setCommentTags] = useState<string[]>([]);
   const [feedbackCount, setFeedbackCount] = useState<FeedbackCount[]>([]);
   const [selectedTip, setSelectedTip] = useState<number | undefined>(undefined);
 
@@ -93,6 +98,8 @@ export const FeedbackProvider = ({ children }: any) => {
         selectedTip,
         setSelectedTip,
         feedbackCount,
+        commentTags,
+        setCommentTags,
       }}
     >
       {children}

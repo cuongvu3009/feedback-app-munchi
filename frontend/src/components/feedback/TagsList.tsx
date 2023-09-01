@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Button from "../shared/Button";
+import FeedbackContext from "../../context/FeedbackContext";
 import { TagsListProps } from "../../types/feedback.types";
 import { defaultTags } from "../../utils/defaultTags";
 
 const TagsList: React.FC<TagsListProps> = ({ emoji }) => {
   const [filteredArray, setFilteredArray] = useState<string[]>();
+  const { setCommentTags } = useContext(FeedbackContext);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   useEffect(() => {
@@ -20,6 +22,10 @@ const TagsList: React.FC<TagsListProps> = ({ emoji }) => {
   useEffect(() => {
     setSelectedTags([]);
   }, [filteredArray]);
+
+  useEffect(() => {
+    setCommentTags(selectedTags);
+  }, [setCommentTags, selectedTags]);
 
   const handleTagsSelect = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
