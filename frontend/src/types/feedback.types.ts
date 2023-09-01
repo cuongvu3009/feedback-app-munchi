@@ -38,3 +38,8 @@ export interface PaymentButtonProps {
   paymentLink: string;
   btnVersion: string;
 }
+
+export interface RatingSelectProps {
+  selected: string;
+  setSelected: (value: string) => void;
+}

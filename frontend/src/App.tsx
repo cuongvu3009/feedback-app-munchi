@@ -11,15 +11,14 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Keep this route at the bottom */}
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<FeedBack />} />
         <Route path="/thankyou" element={<SuccessFeedback />} />
         <Route path="/endfeedback" element={<EndFeedBack />} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/* Legacy route*/}
-        <Route path="/payment" element={<Checkout />} />
-
-        {/* Keep this route at the bottom */}
-        <Route path="*" element={<NotFound />} />
+        {/* <Route path="/payment" element={<Checkout />} /> */}
       </Routes>
     </Router>
   );

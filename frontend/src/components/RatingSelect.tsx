@@ -1,8 +1,12 @@
 import Emoji from "./shared/Emoji";
+import { RatingSelectProps } from "../types/feedback.types";
 import React from "react";
 import { ratingOptions } from "../utils/ratingOptions";
 
-const RatingSelect = ({ selected, setSelected }: any) => {
+const RatingSelect: React.FC<RatingSelectProps> = ({
+  selected,
+  setSelected,
+}) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value);
   };
@@ -17,8 +21,8 @@ const RatingSelect = ({ selected, setSelected }: any) => {
             name="rating"
             value={option.value}
             onChange={handleChange}
-            checked={selected}
-            disabled={selected}
+            checked={selected === option.value}
+            disabled={selected === option.value}
           />
           <label htmlFor={option.value}>
             <Emoji symbol={option.symbol} label={option.label} size={35} />

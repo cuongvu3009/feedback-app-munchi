@@ -43,7 +43,7 @@ const FeedBack: React.FC = () => {
         </div>
       </div>
 
-      <RatingSelect seleted={emoji} setSelected={setEmoji} />
+      <RatingSelect selected={emoji} setSelected={setEmoji} />
       {emoji && <CommentCard emoji={emoji} />}
 
       <div className="navigation">

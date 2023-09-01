@@ -172,6 +172,7 @@ img {
 .btn-secondary {
   background: #fff;
   color: #ff3637;
+  display: flex;
 }
 
 .btn-full {

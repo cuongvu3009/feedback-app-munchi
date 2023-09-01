@@ -37,7 +37,7 @@ export const FeedbackProvider = ({ children }: any) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get(`/feedback`);
+      const response = await axios.get(`http://localhost:8080/feedback`);
       setFeedback(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -51,7 +51,7 @@ export const FeedbackProvider = ({ children }: any) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get(`/feedback/count`);
+      const response = await axios.get(`http://localhost:8080/feedback/count`);
       setFeedbackCount(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -65,7 +65,7 @@ export const FeedbackProvider = ({ children }: any) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("/feedback", newFeedback, {
+      const response = await axios.post("http://localhost:8080/feedback", newFeedback, {
         headers: {
           "Content-Type": "application/json",
         },
