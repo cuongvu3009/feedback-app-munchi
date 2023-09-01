@@ -323,6 +323,7 @@ img {
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
+  margin: 10px;
 }
 
 /* Media query for small screen */

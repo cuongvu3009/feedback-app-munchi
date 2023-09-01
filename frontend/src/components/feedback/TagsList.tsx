@@ -4,7 +4,7 @@ import Button from "../shared/Button";
 import { TagsListProps } from "../../types/feedback.types";
 import { defaultTags } from "../../utils/defaultTags";
 
-const TagsList: React.FC<TagsListProps> = ({ emoji, setCommentTags }) => {
+const TagsList: React.FC<TagsListProps> = ({ emoji }) => {
   const [filteredArray, setFilteredArray] = useState<string[]>();
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
@@ -38,7 +38,6 @@ const TagsList: React.FC<TagsListProps> = ({ emoji, setCommentTags }) => {
         setSelectedTags((prevSelectedTags) => [...prevSelectedTags, item]);
       }
     }
-    setCommentTags(selectedTags);
   };
 
   return (

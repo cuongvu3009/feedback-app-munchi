@@ -46,5 +46,4 @@ export interface RatingSelectProps {
 
 export interface TagsListProps {
   emoji: string;
-  setCommentTags: (value: string[]) => void;
 }

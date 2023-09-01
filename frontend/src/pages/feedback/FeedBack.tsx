@@ -6,15 +6,14 @@ import Button from "../../components/shared/Button";
 import CommentCard from "../../components/feedback/CommentCard";
 import FeedbackContext from "../../context/FeedbackContext";
 import Logo from "../../components/shared/Logo";
-import RatingSelect from "../../components/feedback/RatingList";
-import TagsSelect from "../../components/feedback/TagsList";
+import RatingList from "../../components/feedback/RatingList";
+import TagsList from "../../components/feedback/TagsList";
 import Title from "../../components/shared/Title";
 import TradeMark from "../../components/shared/TradeMark";
 import { useNavigate } from "react-router-dom";
 
 const FeedBack: React.FC = () => {
   const [emoji, setEmoji] = useState<string>("");
-  const [commentTags, setCommentTags] = useState<string[]>([]);
   const navigate = useNavigate();
   const { addFeedback } = useContext(FeedbackContext);
 
@@ -44,11 +43,11 @@ const FeedBack: React.FC = () => {
           </div>
         </div>
       </div>
-      <RatingSelect selected={emoji} setSelected={setEmoji} />
+      <RatingList selected={emoji} setSelected={setEmoji} />
 
       {emoji && (
         <>
-          <TagsSelect emoji={emoji} setCommentTags={setCommentTags} />
+          <TagsList emoji={emoji} />
           <CommentCard emoji={emoji} />
         </>
       )}
