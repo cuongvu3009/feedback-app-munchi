@@ -3,16 +3,18 @@ import "./feedback.css";
 import { useContext, useState } from "react";
 
 import Button from "../../components/shared/Button";
-import CommentCard from "../../components/CommentCard";
+import CommentCard from "../../components/feedback/CommentCard";
 import FeedbackContext from "../../context/FeedbackContext";
 import Logo from "../../components/shared/Logo";
-import RatingSelect from "../../components/RatingSelect";
+import RatingSelect from "../../components/feedback/RatingList";
+import TagsSelect from "../../components/feedback/TagsList";
 import Title from "../../components/shared/Title";
 import TradeMark from "../../components/shared/TradeMark";
 import { useNavigate } from "react-router-dom";
 
 const FeedBack: React.FC = () => {
   const [emoji, setEmoji] = useState<string>("");
+  const [commentTags, setCommentTags] = useState<string[]>([]);
   const navigate = useNavigate();
   const { addFeedback } = useContext(FeedbackContext);
 
@@ -42,9 +44,14 @@ const FeedBack: React.FC = () => {
           </div>
         </div>
       </div>
-
       <RatingSelect selected={emoji} setSelected={setEmoji} />
-      {emoji && <CommentCard emoji={emoji} />}
+
+      {emoji && (
+        <>
+          <TagsSelect emoji={emoji} setCommentTags={setCommentTags} />
+          <CommentCard emoji={emoji} />
+        </>
+      )}
 
       <div className="navigation">
         <Button onClick={handleClick} version="full" isDisabled={!emoji} />

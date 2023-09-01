@@ -6,6 +6,7 @@ const FeedbackSchema: Schema = new Schema(
   {
     emoji: { type: String, required: true },
     comment: { type: String, required: true },
+    tags: { type: Array, required: true },
   },
   {
     timestamps: true,

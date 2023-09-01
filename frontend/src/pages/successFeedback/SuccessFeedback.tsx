@@ -7,27 +7,9 @@ import { GrStatusGood } from "react-icons/gr";
 import PaymentButton from "../../components/shared/PaymentButton";
 import Title from "../../components/shared/Title";
 import TradeMark from "../../components/shared/TradeMark";
+import { tipOptions } from "../../utils/tipOptions";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
-const tipOptions = [
-  { text: "0€", value: 0, symbol: "😄", paymentLink: "" },
-  {
-    text: "2€",
-    value: 2,
-    symbol: "😍",
-  },
-  {
-    text: "3€",
-    value: 3,
-    symbol: "🤩",
-  },
-  {
-    text: "5€",
-    value: 5,
-    symbol: "👏",
-  },
-];
 
 const getLinkByTip = (tip: number): string => {
   switch (tip) {

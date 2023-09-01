@@ -65,11 +65,15 @@ export const FeedbackProvider = ({ children }: any) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8080/feedback", newFeedback, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:8080/feedback",
+        newFeedback,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       setFeedback([response.data, ...feedback]);
       setIsLoading(false);

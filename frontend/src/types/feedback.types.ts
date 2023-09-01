@@ -20,7 +20,7 @@ export interface FeedbackContextProps {
 }
 
 export interface ButtonProps {
-  version?: string;
+  version?: "primary" | "secondary" | "full";
   type?: "submit" | "button" | "reset";
   isDisabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -42,4 +42,9 @@ export interface PaymentButtonProps {
 export interface RatingSelectProps {
   selected: string;
   setSelected: (value: string) => void;
+}
+
+export interface TagsListProps {
+  emoji: string;
+  setCommentTags: (value: string[]) => void;
 }

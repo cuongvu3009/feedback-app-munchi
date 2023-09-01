@@ -8,11 +8,13 @@ class FeedbackService {
 
   static async createFeedback(
     emoji: string,
-    comment: string
+    comment: string,
+    tags: string[]
   ): Promise<IFeedbackDocument> {
     const feedback = new Feedback({
       emoji,
       comment,
+      tags,
     });
 
     return await feedback.save();

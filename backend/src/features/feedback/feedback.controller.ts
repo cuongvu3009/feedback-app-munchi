@@ -6,8 +6,12 @@ import FeedbackService from "./feedback.service";
 class FeedbackController {
   static async createFeedback(req: Request, res: Response) {
     try {
-      const { emoji, comment } = req.body;
-      const feedback = await FeedbackService.createFeedback(emoji, comment);
+      const { emoji, comment, tags } = req.body;
+      const feedback = await FeedbackService.createFeedback(
+        emoji,
+        comment,
+        tags
+      );
 
       // Send email notification
       const info = await EmailService.sendEmail(

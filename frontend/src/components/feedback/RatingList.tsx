@@ -1,12 +1,9 @@
-import Emoji from "./shared/Emoji";
-import { RatingSelectProps } from "../types/feedback.types";
+import Emoji from "../shared/Emoji";
+import { RatingSelectProps } from "../../types/feedback.types";
 import React from "react";
-import { ratingOptions } from "../utils/ratingOptions";
+import { ratingOptions } from "../../utils/ratingOptions";
 
-const RatingSelect: React.FC<RatingSelectProps> = ({
-  selected,
-  setSelected,
-}) => {
+const RatingList: React.FC<RatingSelectProps> = ({ selected, setSelected }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(e.currentTarget.value);
   };
@@ -33,4 +30,4 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
   );
 };
 
-export default RatingSelect;
+export default RatingList;

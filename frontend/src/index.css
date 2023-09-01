@@ -170,9 +170,8 @@ img {
 }
 
 .btn-secondary {
-  background: #fff;
+  background-color: #ffeded;
   color: #ff3637;
-  display: flex;
 }
 
 .btn-full {
@@ -190,6 +189,12 @@ img {
 .btn:hover {
   transform: scale(0.98);
   opacity: 0.9;
+}
+
+.btn-secondary:hover,
+.btn-secondary:checked {
+  color: #fff;
+  background-color: #ff3637;
 }
 
 .btn:disabled {
@@ -307,6 +312,17 @@ img {
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+}
+
+.tags {
+  margin-bottom: 10px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
 }
 
 /* Media query for small screen */
