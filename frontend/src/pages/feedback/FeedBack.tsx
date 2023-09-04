@@ -13,21 +13,13 @@ import TradeMark from "../../components/shared/TradeMark";
 import { useNavigate } from "react-router-dom";
 
 const FeedBack: React.FC = () => {
-  const [emoji, setEmoji] = useState<string>("");
   const navigate = useNavigate();
-  const { commentTags, addFeedback } = useContext(FeedbackContext);
+  const { emoji, addFeedback } = useContext(FeedbackContext);
 
   function handleClick(e: any): void {
     e.preventDefault();
 
-    const comment = "no comment";
-    //	save it to the server
-    const newFeedback = {
-      comment,
-      emoji,
-      tags: commentTags,
-    };
-    addFeedback(newFeedback);
+    addFeedback();
     navigate("/thankyou");
   }
 
@@ -44,12 +36,12 @@ const FeedBack: React.FC = () => {
           </div>
         </div>
       </div>
-      <RatingList selected={emoji} setSelected={setEmoji} />
+      <RatingList />
 
       {emoji && (
         <>
-          <TagsList emoji={emoji} />
-          <CommentCard emoji={emoji} />
+          <TagsList />
+          <CommentCard />
         </>
       )}
 

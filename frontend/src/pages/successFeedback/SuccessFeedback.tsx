@@ -7,22 +7,10 @@ import { GrStatusGood } from "react-icons/gr";
 import PaymentButton from "../../components/shared/PaymentButton";
 import Title from "../../components/shared/Title";
 import TradeMark from "../../components/shared/TradeMark";
+import { getLinkByTip } from "../../utils/getStripeLinkByTipAmount";
 import { tipOptions } from "../../utils/tipOptions";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
-const getLinkByTip = (tip: number): string => {
-  switch (tip) {
-    case 2:
-      return "https://buy.stripe.com/test_5kA7sEbyd85gaeA8wE";
-    case 3:
-      return "https://buy.stripe.com/test_14keV60Tz0CO4UgeV3";
-    case 5:
-      return "https://buy.stripe.com/test_8wM6oA6dT0CO86sfZ8";
-    default:
-      return "https://buy.stripe.com/test_6oE7sE7hX0COgCY149"; // tip amount up to customer
-  }
-};
 
 const SuccessFeedback = () => {
   const { selectedTip, setSelectedTip } = useContext(FeedbackContext);
@@ -70,7 +58,7 @@ const SuccessFeedback = () => {
         </ul>
       </div>
 
-      {/* getLinkByTip(0) will return default link */}
+      {/* getLinkByTip(0) will return default case because it does not exist in switch condition, user will get a link where tip amount is up to them */}
       <PaymentButton
         btnVersion="secondary"
         btnText="Choose other amount"

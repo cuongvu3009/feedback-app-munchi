@@ -5,8 +5,8 @@ import { IFeedbackDocument } from "./feedback.interface";
 const FeedbackSchema: Schema = new Schema(
   {
     emoji: { type: String, required: true },
-    comment: { type: String, required: true },
-    tags: { type: Array, required: true },
+    comment: { type: String },
+    tags: { type: Array },
   },
   {
     timestamps: true,

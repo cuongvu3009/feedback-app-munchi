@@ -6,12 +6,13 @@ import {
 import { createContext, useEffect, useState } from "react";
 
 import axios from "axios";
+import { constantAPI } from "../utils/constantAPI";
 
 const FeedbackContext = createContext<FeedbackContextProps>({
   feedback: [],
   isLoading: false,
   setIsLoading: function (value: boolean): void {},
-  addFeedback: function (newFeedback: Feedback): void {
+  addFeedback: function (): void {
     throw new Error("Function not implemented.");
   },
   selectedTip: undefined,
@@ -19,6 +20,14 @@ const FeedbackContext = createContext<FeedbackContextProps>({
     throw new Error("Function not implemented.");
   },
   feedbackCount: [],
+  emoji: "",
+  setEmoji: function (value: string): void {
+    throw new Error("Function not implemented.");
+  },
+  comment: "",
+  setComment: function (value: string): void {
+    throw new Error("Function not implemented.");
+  },
   commentTags: [],
   setCommentTags: function (value: string[]): void {
     throw new Error("Function not implemented.");
@@ -28,6 +37,8 @@ const FeedbackContext = createContext<FeedbackContextProps>({
 export const FeedbackProvider = ({ children }: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [feedback, setFeedback] = useState<Feedback[]>([]);
+  const [emoji, setEmoji] = useState<string>("");
+  const [comment, setComment] = useState<string>("");
   const [commentTags, setCommentTags] = useState<string[]>([]);
   const [feedbackCount, setFeedbackCount] = useState<FeedbackCount[]>([]);
   const [selectedTip, setSelectedTip] = useState<number | undefined>(undefined);
@@ -42,7 +53,7 @@ export const FeedbackProvider = ({ children }: any) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get(`http://localhost:8080/feedback`);
+      const response = await axios.get(`${constantAPI}/feedback`);
       setFeedback(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -56,7 +67,7 @@ export const FeedbackProvider = ({ children }: any) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get(`http://localhost:8080/feedback/count`);
+      const response = await axios.get(`${constantAPI}/feedback/count`);
       setFeedbackCount(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -66,13 +77,17 @@ export const FeedbackProvider = ({ children }: any) => {
   };
 
   // Add feedback
-  const addFeedback = async (newFeedback: Feedback) => {
+  const addFeedback = async () => {
     setIsLoading(true);
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/feedback",
-        newFeedback,
+        `${constantAPI}/feedback`,
+        {
+          emoji,
+          comment,
+          tags: commentTags,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -98,6 +113,10 @@ export const FeedbackProvider = ({ children }: any) => {
         selectedTip,
         setSelectedTip,
         feedbackCount,
+        comment,
+        setComment,
+        emoji,
+        setEmoji,
         commentTags,
         setCommentTags,
       }}

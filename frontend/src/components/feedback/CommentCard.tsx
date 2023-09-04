@@ -2,11 +2,11 @@ import { useContext, useRef, useState } from "react";
 
 import Button from "../shared/Button";
 import FeedbackContext from "../../context/FeedbackContext";
-import Spinner from "../shared/Spinner";
 import { useNavigate } from "react-router-dom";
 
-const CommentCard = ({ emoji }: { emoji: string }) => {
-  const { commentTags, isLoading, addFeedback } = useContext(FeedbackContext);
+const CommentCard = () => {
+  const { setComment, addFeedback } = useContext(FeedbackContext);
+  // const [userComment, setUserComment] = useState<string>("")
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const navigate = useNavigate();
@@ -26,6 +26,10 @@ const CommentCard = ({ emoji }: { emoji: string }) => {
     setIsPopupOpen(false);
   };
 
+  // const handleUserInput = (e:React.ChangeEvent<HTMLInputElement>) => {
+  // 	console.log(e.target.value)
+  // }
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -37,27 +41,19 @@ const CommentCard = ({ emoji }: { emoji: string }) => {
       return;
     }
 
-    // Save feedback to the server
-    const newFeedback = {
-      comment,
-      emoji,
-      tags: commentTags,
-    };
-    addFeedback(newFeedback);
+    setComment(comment);
+
+    addFeedback();
 
     // Clear the input value
     if (commentInputRef.current) {
-      commentInputRef.current.value = "";
+      // commentInputRef.current.value = "";
     }
 
     // Close the popup
     closePopup();
     navigate("/thankyou");
   };
-
-  if (isLoading) {
-    return <Spinner />;
-  }
 
   return (
     <>
@@ -77,13 +73,11 @@ const CommentCard = ({ emoji }: { emoji: string }) => {
               type="text"
               placeholder="Your comment here..."
               ref={commentInputRef} // Attach the ref to the input element
+              // value={userComment}
+              // onChange={handleUserInput}
             />
-            <Button type="submit" version="primary" btnText="Save"></Button>
-            <Button
-              onClick={closePopup}
-              version="secondary"
-              btnText="Cancel"
-            ></Button>
+            <Button type="submit" version="primary" btnText="Save" />
+            <Button onClick={closePopup} version="secondary" btnText="Cancel" />
           </form>
         </div>
       )}

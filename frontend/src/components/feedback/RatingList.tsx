@@ -1,11 +1,14 @@
+import React, { useContext } from "react";
+
 import Emoji from "../shared/Emoji";
-import { RatingSelectProps } from "../../types/feedback.types";
-import React from "react";
+import FeedbackContext from "../../context/FeedbackContext";
 import { ratingOptions } from "../../utils/ratingOptions";
 
-const RatingList: React.FC<RatingSelectProps> = ({ selected, setSelected }) => {
+const RatingList: React.FC = () => {
+  const { emoji, setEmoji } = useContext(FeedbackContext);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelected(e.currentTarget.value);
+    setEmoji(e.currentTarget.value);
   };
 
   return (
@@ -18,8 +21,8 @@ const RatingList: React.FC<RatingSelectProps> = ({ selected, setSelected }) => {
             name="rating"
             value={option.value}
             onChange={handleChange}
-            checked={selected === option.value}
-            disabled={selected === option.value}
+            checked={emoji === option.value}
+            disabled={emoji === option.value}
           />
           <label htmlFor={option.value}>
             <Emoji symbol={option.symbol} label={option.label} size={35} />

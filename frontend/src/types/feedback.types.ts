@@ -13,10 +13,14 @@ export interface FeedbackContextProps {
   feedback: Feedback[];
   isLoading: boolean;
   setIsLoading: (value: boolean) => void;
-  addFeedback: (newFeedback: Feedback) => void;
+  addFeedback: () => void;
   selectedTip: number | undefined;
   setSelectedTip: (value: number) => void;
   feedbackCount: FeedbackCount[];
+  emoji: string;
+  setEmoji: (value: string) => void;
+  comment: string;
+  setComment: (value: string) => void;
   commentTags: string[];
   setCommentTags: (value: string[]) => void;
 }
@@ -39,13 +43,4 @@ export interface PaymentButtonProps {
   btnText: string;
   paymentLink: string;
   btnVersion: string;
-}
-
-export interface RatingSelectProps {
-  selected: string;
-  setSelected: (value: string) => void;
-}
-
-export interface TagsListProps {
-  emoji: string;
 }
