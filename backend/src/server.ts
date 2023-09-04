@@ -1,5 +1,6 @@
 import "dotenv/config";
 
+import businessRoutes from "./features/business/business.route";
 import connectDB from "./db/connectDB";
 import cors from "cors";
 import express from "express";
@@ -16,7 +17,8 @@ app.use(cors());
 app.use(express.json());
 
 //	routes
-app.use("/feedback", feedbackRoutes);
+app.use("/business", feedbackRoutes);
+app.use("/business", businessRoutes);
 app.use("/payment", stripeRoutes);
 
 app.listen(PORT, () => {

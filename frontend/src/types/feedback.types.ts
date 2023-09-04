@@ -11,8 +11,7 @@ export interface FeedbackCount {
 
 export interface FeedbackContextProps {
   feedback: Feedback[];
-  isLoading: boolean;
-  setIsLoading: (value: boolean) => void;
+
   addFeedback: () => void;
   selectedTip: number | undefined;
   setSelectedTip: (value: number) => void;

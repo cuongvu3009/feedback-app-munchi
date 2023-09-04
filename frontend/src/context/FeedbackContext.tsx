@@ -7,11 +7,10 @@ import { createContext, useEffect, useState } from "react";
 
 import axios from "axios";
 import { constantAPI } from "../utils/constantAPI";
+import useApiFeedback from "../hooks/useApiFeedback";
 
 const FeedbackContext = createContext<FeedbackContextProps>({
   feedback: [],
-  isLoading: false,
-  setIsLoading: function (value: boolean): void {},
   addFeedback: function (): void {
     throw new Error("Function not implemented.");
   },
@@ -35,7 +34,6 @@ const FeedbackContext = createContext<FeedbackContextProps>({
 });
 
 export const FeedbackProvider = ({ children }: any) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [feedback, setFeedback] = useState<Feedback[]>([]);
   const [emoji, setEmoji] = useState<string>("");
   const [comment, setComment] = useState<string>("");
@@ -43,43 +41,24 @@ export const FeedbackProvider = ({ children }: any) => {
   const [feedbackCount, setFeedbackCount] = useState<FeedbackCount[]>([]);
   const [selectedTip, setSelectedTip] = useState<number | undefined>(undefined);
 
-  useEffect(() => {
-    fetchFeedbackCount();
-    fetchFeedback();
-  }, []);
-
-  // Fetch feedback
-  const fetchFeedback = async () => {
-    setIsLoading(true);
-
-    try {
-      const response = await axios.get(`${constantAPI}/feedback`);
-      setFeedback(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("There was an error fetching data", error);
-      setIsLoading(false);
-    }
-  };
+  //	Get feedbacks
+  const [feedbackData, loading, refresh] = useApiFeedback({
+    url: `${constantAPI}/feedback`,
+    method: "get",
+  });
 
   // Fetch feedback count
   const fetchFeedbackCount = async () => {
-    setIsLoading(true);
-
     try {
       const response = await axios.get(`${constantAPI}/feedback/count`);
       setFeedbackCount(response.data);
-      setIsLoading(false);
     } catch (error) {
       console.error("There was an error fetching data", error);
-      setIsLoading(false);
     }
   };
 
   // Add feedback
   const addFeedback = async () => {
-    setIsLoading(true);
-
     try {
       const response = await axios.post(
         `${constantAPI}/feedback`,
@@ -96,10 +75,8 @@ export const FeedbackProvider = ({ children }: any) => {
       );
 
       setFeedback([response.data, ...feedback]);
-      setIsLoading(false);
     } catch (error) {
       console.error("There was an error sending the data", error);
-      setIsLoading(false);
     }
   };
 
@@ -107,8 +84,7 @@ export const FeedbackProvider = ({ children }: any) => {
     <FeedbackContext.Provider
       value={{
         addFeedback,
-        isLoading,
-        setIsLoading,
+
         feedback,
         selectedTip,
         setSelectedTip,
