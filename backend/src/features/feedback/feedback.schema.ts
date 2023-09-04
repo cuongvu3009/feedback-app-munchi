@@ -4,6 +4,11 @@ import { IFeedbackDocument } from "./feedback.interface";
 
 const FeedbackSchema: Schema = new Schema(
   {
+    businessID: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "Business", // Reference to the Business model
+    },
     emoji: { type: String, required: true },
     comment: { type: String },
     tags: { type: Array },
