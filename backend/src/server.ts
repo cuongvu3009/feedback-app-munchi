@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 //	routes
-app.use("/business", feedbackRoutes);
+app.use("/feedback", feedbackRoutes);
 app.use("/business", businessRoutes);
 app.use("/payment", stripeRoutes);
 

@@ -1,45 +1,28 @@
 import Feedback from "./feedback.schema";
 import { IFeedbackDocument } from "./feedback.interface";
-import { Request } from "express";
 
 class FeedbackService {
-  static async getAllFeedbacks(
+  static async findFeedbacksByBusinessID(
     businessID: string
-  ): Promise<IFeedbackDocument[]> {
+  ): Promise<IFeedbackDocument[] | IFeedbackDocument | null> {
     return Feedback.find({ businessID }).exec();
   }
 
-  // static async createFeedback(
-  //   emoji: string,
-  //   comment: string,
-  //   tags: string[]
-  // ): Promise<IFeedbackDocument> {
-  //   const feedback = new Feedback({
-  //     emoji,
-  //     comment,
-  //     tags,
-  //   });
+  static async createOneFeedback(
+    businessID: string,
+    emoji: string,
+    comment: string,
+    tags: string[]
+  ): Promise<IFeedbackDocument> {
+    const feedback = new Feedback({
+      businessID,
+      emoji,
+      comment,
+      tags,
+    });
 
-  //   return await feedback.save();
-  // }
-
-  // static async countByType(): Promise<Array<{ type: string; count: number }>> {
-  //   const emojiTypes = ["awesome", "good", "okey", "bad", "terrible"];
-
-  //   const feedbackCounts = await Promise.all(
-  //     emojiTypes.map((emoji) => Feedback.countDocuments({ emoji }))
-  //   );
-
-  //   const total = feedbackCounts.reduce((acc, current) => acc + current, 0);
-
-  //   return [
-  //     ...emojiTypes.map((type, index) => ({
-  //       type,
-  //       count: feedbackCounts[index],
-  //     })),
-  //     { type: "total", count: total },
-  //   ];
-  // }
+    return await feedback.save();
+  }
 }
 
 export default FeedbackService;

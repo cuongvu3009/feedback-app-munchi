@@ -1,6 +1,5 @@
 import Business from "./business.schema";
 import { IBusinessDocument } from "./business.interface";
-import { Request } from "express";
 
 class BusinessService {
   static async getAllBusinesses(): Promise<IBusinessDocument[]> {
@@ -28,6 +27,12 @@ class BusinessService {
     id: string
   ): Promise<IBusinessDocument | null> {
     return await Business.findById(id).exec();
+  }
+
+  static async getOneBusinessByBusinessId(
+    businessID: string
+  ): Promise<IBusinessDocument | IBusinessDocument[] | null> {
+    return await Business.find({ businessID }).exec();
   }
 
   static async deleteBusiness(id: string): Promise<IBusinessDocument | null> {
