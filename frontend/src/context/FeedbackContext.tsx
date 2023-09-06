@@ -7,10 +7,10 @@ import { createContext, useEffect, useState } from "react";
 
 import axios from "axios";
 import { constantAPI } from "../utils/constantAPI";
-import useApiFeedback from "../hooks/useApiFeedback";
 
 const FeedbackContext = createContext<FeedbackContextProps>({
   feedback: [],
+  isLoading: false,
   addFeedback: function (): void {
     throw new Error("Function not implemented.");
   },
@@ -34,6 +34,7 @@ const FeedbackContext = createContext<FeedbackContextProps>({
 });
 
 export const FeedbackProvider = ({ children }: any) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [feedback, setFeedback] = useState<Feedback[]>([]);
   const [emoji, setEmoji] = useState<string>("");
   const [comment, setComment] = useState<string>("");
@@ -41,21 +42,34 @@ export const FeedbackProvider = ({ children }: any) => {
   const [feedbackCount, setFeedbackCount] = useState<FeedbackCount[]>([]);
   const [selectedTip, setSelectedTip] = useState<number | undefined>(undefined);
 
-  //	Get feedbacks
-  const [feedbackData, loading, refresh] = useApiFeedback({
-    url: `${constantAPI}/feedback`,
-    method: "get",
-  });
+  useEffect(() => {
+    // fetchFeedbackCount();
+    fetchFeedback();
+  }, []);
 
-  // Fetch feedback count
-  const fetchFeedbackCount = async () => {
+  // Fetch feedback
+  const fetchFeedback = async () => {
+    setIsLoading(true);
+
     try {
-      const response = await axios.get(`${constantAPI}/feedback/count`);
-      setFeedbackCount(response.data);
+      const response = await axios.get(`${constantAPI}/feedback`);
+      setFeedback(response.data);
+      setIsLoading(false);
     } catch (error) {
       console.error("There was an error fetching data", error);
+      setIsLoading(false);
     }
   };
+
+  // Fetch feedback count
+  // const fetchFeedbackCount = async () => {
+  //   try {
+  //     const response = await axios.get(`${constantAPI}/feedback/count`);
+  //     setFeedbackCount(response.data);
+  //   } catch (error) {
+  //     console.error("There was an error fetching data", error);
+  //   }
+  // };
 
   // Add feedback
   const addFeedback = async () => {
@@ -83,8 +97,8 @@ export const FeedbackProvider = ({ children }: any) => {
   return (
     <FeedbackContext.Provider
       value={{
+        isLoading,
         addFeedback,
-
         feedback,
         selectedTip,
         setSelectedTip,

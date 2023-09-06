@@ -15,7 +15,6 @@ class FeedbackController {
         );
         res.status(200).json(feedbacks);
       } else {
-        // Handle the case where businessID is not provided or is not a string
         res.status(400).json({ message: "Invalid businessID" });
       }
     } catch (error) {
@@ -27,22 +26,56 @@ class FeedbackController {
   static async createFeedback(req: Request, res: Response) {
     try {
       const id = req.params.id;
-      const { businessID, emoji, comment, tags } = req.body;
+      const {
+        businessID,
+        emoji_service,
+        comment_service,
+        tags_service,
+        emoji_order,
+        comment_order,
+        tags_order,
+      } = req.body;
 
       const business = await BusinessService.getOneBusinessById(id);
 
       if (business) {
         const feedbacks = await FeedbackService.createOneFeedback(
           businessID,
-          emoji,
-          comment,
-          tags
+          emoji_service,
+          comment_service,
+          tags_service,
+          emoji_order,
+          comment_order,
+          tags_order
         );
 
         // Send email notification
         const info = await EmailService.sendEmail(
           "New Feedback Created from customer",
-          `Hello there! You got the a new feedback from client. Emoji: ${emoji}, Comment: ${comment}`
+          `<div>
+					<h3>Hello business ID ${businessID}, you got a new feedback from customer!</h3>
+					<hr/>
+					<div>
+						<ul>
+							<h4>Feedback for service:</h4>
+							<li>Reaction: ${emoji_service}</li>
+							<li>Comment: ${
+                comment_service
+                  ? comment_service
+                  : "No comment for service experience"
+              }</li>
+							<li>Opinion: ${tags_service ? tags_service : "No opinion about service"} </li>
+						</ul>
+						
+						 <ul>
+							<h4>Feedback for order:</h4>
+							<li>Reaction: ${emoji_order}</li>
+							<li>Comment: ${comment_order ? comment_order : "No comment for order"}</li>
+							<li>Opinion: ${tags_order ? tags_order : "No opinion about order"} </li>
+						</ul>
+						<p>More details can be found via feedback dashboard</p>
+					</div>
+				</div>`
         );
 
         console.log("Message sent: %s", info);

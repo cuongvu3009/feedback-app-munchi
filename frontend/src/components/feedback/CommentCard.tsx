@@ -72,7 +72,7 @@ const CommentCard = () => {
             <input
               type="text"
               placeholder="Your comment here..."
-              ref={commentInputRef} // Attach the ref to the input element
+              ref={commentInputRef}
               // value={userComment}
               // onChange={handleUserInput}
             />

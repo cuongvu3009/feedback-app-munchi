@@ -5,20 +5,26 @@ class FeedbackService {
   static async findFeedbacksByBusinessID(
     businessID: string
   ): Promise<IFeedbackDocument[] | IFeedbackDocument | null> {
-    return Feedback.find({ businessID }).exec();
+    return Feedback.find({ businessID });
   }
 
   static async createOneFeedback(
     businessID: string,
-    emoji: string,
-    comment: string,
-    tags: string[]
+    emoji_service: string,
+    comment_service: string,
+    tags_service: string[],
+    emoji_order: string,
+    comment_order: string,
+    tags_order: string[]
   ): Promise<IFeedbackDocument> {
     const feedback = new Feedback({
       businessID,
-      emoji,
-      comment,
-      tags,
+      emoji_service,
+      comment_service,
+      tags_service,
+      emoji_order,
+      comment_order,
+      tags_order,
     });
 
     return await feedback.save();

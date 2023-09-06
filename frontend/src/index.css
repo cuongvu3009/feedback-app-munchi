@@ -62,9 +62,10 @@ img {
   margin-top: auto;
 }
 
-.red-text {
+.munchi-logo {
   color: #ff3637;
   font-weight: bold;
+  font-size: 20px;
 }
 
 .rating {

@@ -1,17 +1,15 @@
 .dashboard {
-  width: 90%;
-  margin: 0 auto;
-}
-
-.flex,
-.flex-between {
   display: flex;
-  width: 100%;
-  gap: 10px;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
-.flex {
-  justify-content: center;
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  gap: 10px;
 }
 
 .flex-between {
@@ -44,6 +42,60 @@
   width: fit-content;
 }
 
+.sidebar {
+  flex: 0 0 250px;
+  background-color: #333;
+  padding: 20px;
+  color: #fff;
+  overflow: auto;
+  height: 100vh;
+  padding-top: 20px;
+  transition: 0.3s; /* Add a transition for smooth animation */
+}
+
+/* Add a class to control the width when the sidebar is closed */
+.sidebar.closed {
+  width: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+}
+
+.sidebar a:hover {
+  background-color: #555;
+}
+
+.munchi {
+  color: red;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+}
+
+.recharts-x-axis-label {
+  text-anchor: middle;
+  transform: translateX(0);
+}
+
+.recharts-y-axis-label {
+  text-anchor: middle;
+  transform: translateY(0);
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .flex {
@@ -52,5 +104,17 @@
   .dashboard {
     width: 100%;
     overflow: visible;
+  }
+
+  .sidebar {
+    width: 0;
+  }
+
+  .sidebar.closed {
+    width: 250px;
+  }
+
+  .chart-container {
+    height: 250px;
   }
 }
