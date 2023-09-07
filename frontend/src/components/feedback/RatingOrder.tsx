@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import CommentOrder from "./CommentOrder";
+import Comment from "./Comment";
 import Emoji from "../shared/Emoji";
 import TagsOrder from "./TagsOrder";
 import { ratingOptions } from "../../utils/ratingOptions";
@@ -51,7 +51,7 @@ const RatingOrder: React.FC = () => {
       {emojiOrder !== null && (
         <>
           <TagsOrder emojiOrder={emojiOrder} />
-          <CommentOrder />
+          <Comment storageKey="commentOrder" />
         </>
       )}
     </>

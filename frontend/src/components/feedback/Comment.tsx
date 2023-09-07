@@ -1,34 +1,33 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Button from "../shared/Button";
 
-const CommentService = () => {
+interface CommentProps {
+  storageKey: "commentService" | "commentOrder";
+}
+
+const Comment: React.FC<CommentProps> = ({ storageKey }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-
   const commentInputRef = useRef<HTMLInputElement>(null);
 
   const openPopup = () => {
     setIsPopupOpen(true);
-    // Focus the comment input when the popup opens
     if (commentInputRef.current) {
       commentInputRef.current.focus();
     }
   };
+
   const closePopup = () => {
     setIsPopupOpen(false);
   };
 
   useEffect(() => {
-    // Retrieve the commentService value from local storage when the component mounts
-    const storedCommentService = localStorage.getItem("commentService");
-    if (storedCommentService) {
-      // Set the value of the commentInputRef from local storage
-      if (commentInputRef.current) {
-        commentInputRef.current.value = storedCommentService;
-      }
+    const storedComment = localStorage.getItem(storageKey);
+    if (storedComment && commentInputRef.current) {
+      commentInputRef.current.value = storedComment;
     }
-  }, []);
+  }, [storageKey]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,18 +36,14 @@ const CommentService = () => {
       return;
     }
 
-    // Store the commentInputRef value in local storage as "commentService"
-    localStorage.setItem("commentService", comment);
+    localStorage.setItem(storageKey, comment);
 
-    // Clear the input value
     if (commentInputRef.current) {
       commentInputRef.current.value = "";
     }
 
-    // Close the popup
     closePopup();
 
-    // Mark the form as submitted
     setIsFormSubmitted(true);
   };
 
@@ -84,4 +79,4 @@ const CommentService = () => {
   );
 };
 
-export default CommentService;
+export default Comment;
