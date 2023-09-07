@@ -11,7 +11,6 @@ const RatingOrder: React.FC = () => {
   );
 
   useEffect(() => {
-    // If you want to set a default value when the component mounts and localStorage is empty
     if (emojiOrder !== null) {
       setEmojiOrder(emojiOrder);
       localStorage.setItem("emojiOrder", emojiOrder);
@@ -51,7 +50,7 @@ const RatingOrder: React.FC = () => {
 
       {emojiOrder !== null && (
         <>
-          <TagsOrder />
+          <TagsOrder emojiOrder={emojiOrder} />
           <CommentOrder />
         </>
       )}

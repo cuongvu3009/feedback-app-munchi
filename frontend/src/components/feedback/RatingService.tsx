@@ -11,7 +11,6 @@ const RatingService: React.FC = () => {
   );
 
   useEffect(() => {
-    // If you want to set a default value when the component mounts and localStorage is empty
     if (emojiService !== null) {
       setEmojiService(emojiService);
       localStorage.setItem("emojiService", emojiService);
@@ -51,7 +50,7 @@ const RatingService: React.FC = () => {
 
       {emojiService !== null && (
         <>
-          <TagsService />
+          <TagsService emojiService={emojiService} />
           <CommentService />
         </>
       )}

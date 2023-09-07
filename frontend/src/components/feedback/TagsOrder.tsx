@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
 import { defaultTags } from "../../utils/defaultTags";
+import { tagsQuestion } from "../../utils/tagsQuestion";
 
-const TagsOrder: React.FC = () => {
-  const [emojiOrder, setEmojiOrder] = useState<string | null>(() =>
-    localStorage.getItem("emojiService")
-  );
+interface TagsOrderProps {
+  emojiOrder: string | null; // Define the emojiService prop
+}
+
+const TagsOrder: React.FC<TagsOrderProps> = ({ emojiOrder }) => {
   const [orderTags, setOrderTags] = useState<string[]>(
     JSON.parse(localStorage.getItem("orderTags") || "[]")
   );
@@ -34,8 +36,12 @@ const TagsOrder: React.FC = () => {
 
   return (
     <div className="tags">
-      <h3>What went well?</h3>
-      <p>What did you specially enjoy?</p>
+      {emojiOrder && emojiOrder in tagsQuestion && (
+        <div>
+          <h4>{tagsQuestion[emojiOrder]["question_1"]}</h4>
+          <p>{tagsQuestion[emojiOrder]["question_2"]}</p>
+        </div>
+      )}
       <div className="tags-container">
         {tags?.map((tag, index) => {
           return (
