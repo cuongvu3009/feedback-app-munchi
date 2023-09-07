@@ -6,7 +6,7 @@ interface CommentProps {
   storageKey: "commentService" | "commentOrder";
 }
 
-const Comment: React.FC<CommentProps> = ({ storageKey }) => {
+const FeedbackComment: React.FC<CommentProps> = ({ storageKey }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const commentInputRef = useRef<HTMLInputElement>(null);
@@ -79,4 +79,4 @@ const Comment: React.FC<CommentProps> = ({ storageKey }) => {
   );
 };
 
-export default Comment;
+export default FeedbackComment;

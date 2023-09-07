@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import Comment from "./Comment";
 import Emoji from "../shared/Emoji";
+import FeedbackComment from "./FeedbackComment";
 import TagsService from "./TagsService";
 import { ratingOptions } from "../../utils/ratingOptions";
 
@@ -51,7 +51,7 @@ const RatingService: React.FC = () => {
       {emojiService !== null && (
         <>
           <TagsService emojiService={emojiService} />
-          <Comment storageKey="commentService" />
+          <FeedbackComment storageKey="commentService" />
         </>
       )}
     </>
