@@ -4,6 +4,8 @@ import Button from "../shared/Button";
 
 const CommentOrder = () => {
   const commentInputRef = useRef<HTMLInputElement | null>(null);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
@@ -34,13 +36,21 @@ const CommentOrder = () => {
     localStorage.setItem("commentOrder", comment);
 
     closePopup();
+
+    // Mark the form as submitted
+    setIsFormSubmitted(true);
   };
 
   return (
     <>
       <div className="comment">
         <div className="user-comment">
-          <div className="card card-comment" onClick={openPopup}>
+          <div
+            className={`card card-comment ${
+              isFormSubmitted ? "form-submitted" : ""
+            }`}
+            onClick={openPopup}
+          >
             + Add a comment for the restaurant
           </div>
         </div>

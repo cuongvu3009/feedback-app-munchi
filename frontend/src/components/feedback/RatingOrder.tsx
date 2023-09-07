@@ -32,7 +32,7 @@ const RatingOrder: React.FC = () => {
                 localStorage.setItem("emojiOrder", e.target.value);
               }}
               checked={emojiOrder === option.value}
-              disabled={emojiOrder === option.value}
+              disabled={emojiOrder !== null}
             />
             <label
               htmlFor={option.value}

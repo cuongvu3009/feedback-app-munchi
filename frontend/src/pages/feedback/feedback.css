@@ -72,3 +72,8 @@
   background-color: #ffeded;
   color: #ff3637;
 }
+
+.form-submitted {
+  background-color: red;
+  color: white;
+}

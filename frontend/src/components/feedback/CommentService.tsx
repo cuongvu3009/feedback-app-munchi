@@ -4,6 +4,8 @@ import Button from "../shared/Button";
 
 const CommentService = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
   const commentInputRef = useRef<HTMLInputElement>(null);
 
   const openPopup = () => {
@@ -45,13 +47,21 @@ const CommentService = () => {
 
     // Close the popup
     closePopup();
+
+    // Mark the form as submitted
+    setIsFormSubmitted(true);
   };
 
   return (
     <>
       <div className="comment">
         <div className="user-comment">
-          <div className="card card-comment" onClick={openPopup}>
+          <div
+            className={`card card-comment ${
+              isFormSubmitted ? "form-submitted" : ""
+            }`}
+            onClick={openPopup}
+          >
             + Add a comment for the restaurant
           </div>
         </div>

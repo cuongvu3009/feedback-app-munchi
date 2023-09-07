@@ -75,7 +75,7 @@ class FeedbackController {
       );
 
       console.log("Message sent: %s", info);
-      res.status(200).json(feedback);
+      res.status(201).json(feedback);
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: "Internal Server Error" });

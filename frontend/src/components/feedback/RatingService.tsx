@@ -32,7 +32,7 @@ const RatingService: React.FC = () => {
                 localStorage.setItem("emojiService", e.target.value);
               }}
               checked={emojiService === option.value}
-              disabled={emojiService === option.value}
+              disabled={emojiService !== null}
             />
             <label
               htmlFor={option.value}

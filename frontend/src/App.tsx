@@ -12,10 +12,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="*" element={<NotFound />} />
-        <Route path="/service-feedback" element={<FeedbackService />} />
+        <Route path="/" element={<FeedbackService />} />
         <Route path="/order-feedback" element={<FeedbackOrder />} />
 
-        <Route path="/thankyou" element={<SuccessFeedback />} />
+        <Route path="/feedbacksent" element={<SuccessFeedback />} />
         <Route path="/endfeedback" element={<EndFeedBack />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>

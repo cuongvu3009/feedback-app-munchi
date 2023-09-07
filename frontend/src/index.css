@@ -97,6 +97,12 @@ img {
   cursor: pointer;
 }
 
+input[type="radio"]:disabled + label.unselected-button {
+  color: #999;
+  background-color: #f4f4f4;
+  cursor: not-allowed;
+}
+
 .rating li:hover,
 .num-display {
   background: #ff6a95;
