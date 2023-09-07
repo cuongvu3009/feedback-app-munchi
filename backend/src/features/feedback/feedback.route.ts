@@ -3,7 +3,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.post("/:id", FeedbackController.createFeedback);
-router.get("/", FeedbackController.getFeedbacksByBusinessID);
+router.post("/", FeedbackController.createFeedback);
+router.get("/:businessSlug", FeedbackController.getFeedbacksByBusinessSlug);
 
 export default router;

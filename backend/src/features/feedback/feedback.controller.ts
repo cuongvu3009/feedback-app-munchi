@@ -5,17 +5,17 @@ import EmailService from "../emailService/email.service";
 import FeedbackService from "./feedback.service";
 
 class FeedbackController {
-  static async getFeedbacksByBusinessID(req: Request, res: Response) {
+  static async getFeedbacksByBusinessSlug(req: Request, res: Response) {
     try {
       const businessSlug = req.params.businessSlug;
 
       if (typeof businessSlug === "string") {
-        const feedbacks = await FeedbackService.findFeedbacksByBusinessID(
+        const feedbacks = await FeedbackService.findFeedbacksBybusinessSlug(
           businessSlug
         );
         res.status(200).json(feedbacks);
       } else {
-        res.status(400).json({ message: "Invalid businessID" });
+        res.status(400).json({ message: "Invalid business slug" });
       }
     } catch (error) {
       console.error(error);
@@ -25,7 +25,6 @@ class FeedbackController {
 
   static async createFeedback(req: Request, res: Response) {
     try {
-      const id = req.params.id;
       const {
         businessSlug,
         emoji_service,
@@ -36,23 +35,20 @@ class FeedbackController {
         tags_order,
       } = req.body;
 
-      const business = await BusinessService.getOneBusinessById(id);
+      const feedback = await FeedbackService.createOneFeedback(
+        businessSlug,
+        emoji_service,
+        comment_service,
+        tags_service,
+        emoji_order,
+        comment_order,
+        tags_order
+      );
 
-      if (business) {
-        const feedbacks = await FeedbackService.createOneFeedback(
-          businessSlug,
-          emoji_service,
-          comment_service,
-          tags_service,
-          emoji_order,
-          comment_order,
-          tags_order
-        );
-
-        // Send email notification
-        const info = await EmailService.sendEmail(
-          "New Feedback Created from customer",
-          `<div>
+      // Send email notification
+      const info = await EmailService.sendEmail(
+        "New Feedback Created from customer",
+        `<div>
 					<h3>Hello business ID ${businessSlug}, you got a new feedback from customer!</h3>
 					<hr/>
 					<div>
@@ -76,13 +72,10 @@ class FeedbackController {
 						<p>More details can be found via feedback dashboard</p>
 					</div>
 				</div>`
-        );
+      );
 
-        console.log("Message sent: %s", info);
-        res.status(200).json(feedbacks);
-      } else {
-        return res.status(404).json({ message: "Business not found" });
-      }
+      console.log("Message sent: %s", info);
+      res.status(200).json(feedback);
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: "Internal Server Error" });

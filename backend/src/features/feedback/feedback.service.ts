@@ -2,10 +2,10 @@ import Feedback from "./feedback.schema";
 import { IFeedbackDocument } from "./feedback.interface";
 
 class FeedbackService {
-  static async findFeedbacksByBusinessID(
-    businessID: string
+  static async findFeedbacksBybusinessSlug(
+    businessSlug: string
   ): Promise<IFeedbackDocument[] | IFeedbackDocument | null> {
-    return Feedback.find({ businessID });
+    return Feedback.find({ businessSlug });
   }
 
   static async createOneFeedback(
