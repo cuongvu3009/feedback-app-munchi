@@ -68,7 +68,11 @@ const FeedbackOrder: React.FC = () => {
       <RatingOrder />
 
       <div className="navigation">
-        <Button onClick={handleClick} version="full" />
+        <Button
+          onClick={handleClick}
+          version="full"
+          btnText="Submit feedback"
+        />
         <TradeMark />
       </div>
     </div>

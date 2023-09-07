@@ -17,7 +17,7 @@ export interface ButtonProps {
   type?: "submit" | "button" | "reset";
   isDisabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  btnText?: string;
+  btnText: string;
 }
 
 export interface EmojiProps {

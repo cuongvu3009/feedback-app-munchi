@@ -31,7 +31,7 @@ const FeedbackService: React.FC = () => {
       <RatingService />
 
       <div className="navigation">
-        <Button onClick={handleClick} version="full" />
+        <Button onClick={handleClick} version="full" btnText="Next" />
         <TradeMark />
       </div>
     </div>

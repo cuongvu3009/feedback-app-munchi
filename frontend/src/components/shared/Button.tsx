@@ -6,7 +6,7 @@ const Button: React.FC<ButtonProps> = ({
   isDisabled = false,
   onClick,
   type = "button",
-  btnText = "next",
+  btnText = "",
 }) => {
   return (
     <button
