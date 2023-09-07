@@ -7,11 +7,11 @@ import FeedbackService from "./feedback.service";
 class FeedbackController {
   static async getFeedbacksByBusinessID(req: Request, res: Response) {
     try {
-      const businessID = req.query.businessID;
+      const businessSlug = req.params.businessSlug;
 
-      if (typeof businessID === "string") {
+      if (typeof businessSlug === "string") {
         const feedbacks = await FeedbackService.findFeedbacksByBusinessID(
-          businessID
+          businessSlug
         );
         res.status(200).json(feedbacks);
       } else {
@@ -27,7 +27,7 @@ class FeedbackController {
     try {
       const id = req.params.id;
       const {
-        businessID,
+        businessSlug,
         emoji_service,
         comment_service,
         tags_service,
@@ -40,7 +40,7 @@ class FeedbackController {
 
       if (business) {
         const feedbacks = await FeedbackService.createOneFeedback(
-          businessID,
+          businessSlug,
           emoji_service,
           comment_service,
           tags_service,
@@ -53,7 +53,7 @@ class FeedbackController {
         const info = await EmailService.sendEmail(
           "New Feedback Created from customer",
           `<div>
-					<h3>Hello business ID ${businessID}, you got a new feedback from customer!</h3>
+					<h3>Hello business ID ${businessSlug}, you got a new feedback from customer!</h3>
 					<hr/>
 					<div>
 						<ul>

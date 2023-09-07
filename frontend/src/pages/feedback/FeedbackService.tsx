@@ -1,26 +1,18 @@
 import "./feedback.css";
 
-import { useContext, useState } from "react";
-
 import Button from "../../components/shared/Button";
-import CommentCard from "../../components/feedback/CommentCard";
-import FeedbackContext from "../../context/FeedbackContext";
 import Logo from "../../components/shared/Logo";
-import RatingList from "../../components/feedback/RatingList";
-import TagsList from "../../components/feedback/TagsList";
+import RatingService from "../../components/feedback/RatingService";
 import Title from "../../components/shared/Title";
 import TradeMark from "../../components/shared/TradeMark";
 import { useNavigate } from "react-router-dom";
 
-const FeedBack: React.FC = () => {
+const FeedbackService: React.FC = () => {
   const navigate = useNavigate();
-  const { emoji, addFeedback } = useContext(FeedbackContext);
 
   function handleClick(e: any): void {
     e.preventDefault();
-
-    addFeedback();
-    navigate("/thankyou");
+    navigate("/order-feedback");
   }
 
   return (
@@ -36,21 +28,14 @@ const FeedBack: React.FC = () => {
           </div>
         </div>
       </div>
-      <RatingList />
-
-      {emoji && (
-        <>
-          <TagsList />
-          <CommentCard />
-        </>
-      )}
+      <RatingService />
 
       <div className="navigation">
-        <Button onClick={handleClick} version="full" isDisabled={!emoji} />
+        <Button onClick={handleClick} version="full" />
         <TradeMark />
       </div>
     </div>
   );
 };
 
-export default FeedBack;
+export default FeedbackService;

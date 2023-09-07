@@ -4,24 +4,12 @@ export interface Feedback {
   emoji: any;
   comment: string;
 }
-export interface FeedbackCount {
-  type: string;
-  count: number | null;
-}
 
 export interface FeedbackContextProps {
   feedback: Feedback[];
   isLoading: boolean;
-  addFeedback: () => void;
   selectedTip: number | undefined;
   setSelectedTip: (value: number) => void;
-  feedbackCount: FeedbackCount[];
-  emoji: string;
-  setEmoji: (value: string) => void;
-  comment: string;
-  setComment: (value: string) => void;
-  commentTags: string[];
-  setCommentTags: (value: string[]) => void;
 }
 
 export interface ButtonProps {

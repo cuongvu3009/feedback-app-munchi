@@ -4,7 +4,7 @@ import { IFeedbackDocument } from "./feedback.interface";
 
 const FeedbackSchema: Schema = new Schema(
   {
-    businessID: { type: String, required: true },
+    businessSlug: { type: String, required: true },
     emoji_service: { type: String, required: true },
     comment_service: { type: String },
     tags_service: { type: Array },

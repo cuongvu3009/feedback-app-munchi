@@ -2,11 +2,10 @@ import { useContext, useState } from "react";
 
 import Button from "../shared/Button";
 import FeedbackContext from "../../context/FeedbackContext";
-import { calculateAverageScore } from "../../utils/calculateScore";
 import moment from "moment";
 
 const DashboardContent = () => {
-  const { feedback, feedbackCount } = useContext(FeedbackContext);
+  const { feedback } = useContext(FeedbackContext);
   const [feedbackLimit, setFeedbackLimit] = useState<number>(7);
 
   const handleToggleDisplay = () => {
@@ -17,17 +16,17 @@ const DashboardContent = () => {
     }
   };
 
-  const roundedAverageScore = calculateAverageScore(feedbackCount);
+  // const roundedAverageScore = calculateAverageScore(feedbackCount);
 
   return (
     <div className="dashboard-content">
       <div className="dashboard-card dashboard-info">
         <h3>Average score</h3>
         <div className="dashboard-score">
-          <span className="score"> {roundedAverageScore.toFixed(1)}</span>
+          <span className="score"> 4.8</span>
         </div>
 
-        <div className="dashboard-answers">
+        {/* <div className="dashboard-answers">
           <div className="flex-between">
             <p>Answered "Awesome" 😍</p>
             <p>{feedbackCount[0]?.count}</p>
@@ -59,7 +58,7 @@ const DashboardContent = () => {
             </p>
             <p>{feedbackCount[5]?.count}</p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="dashboard-card dashboard-response">

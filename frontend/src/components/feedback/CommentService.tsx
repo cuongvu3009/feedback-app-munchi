@@ -1,58 +1,50 @@
-import { useContext, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Button from "../shared/Button";
-import FeedbackContext from "../../context/FeedbackContext";
-import { useNavigate } from "react-router-dom";
 
-const CommentCard = () => {
-  const { setComment, addFeedback } = useContext(FeedbackContext);
-  // const [userComment, setUserComment] = useState<string>("")
-
+const CommentService = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const navigate = useNavigate();
-
   const commentInputRef = useRef<HTMLInputElement>(null);
 
   const openPopup = () => {
     setIsPopupOpen(true);
-
     // Focus the comment input when the popup opens
     if (commentInputRef.current) {
       commentInputRef.current.focus();
     }
   };
-
   const closePopup = () => {
     setIsPopupOpen(false);
   };
 
-  // const handleUserInput = (e:React.ChangeEvent<HTMLInputElement>) => {
-  // 	console.log(e.target.value)
-  // }
+  useEffect(() => {
+    // Retrieve the commentService value from local storage when the component mounts
+    const storedCommentService = localStorage.getItem("commentService");
+    if (storedCommentService) {
+      // Set the value of the commentInputRef from local storage
+      if (commentInputRef.current) {
+        commentInputRef.current.value = storedCommentService;
+      }
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Collect the comment from the input ref
     const comment = commentInputRef.current?.value || "";
-
     if (!comment.trim()) {
-      // If comment is empty or only contains whitespace, don't submit
       return;
     }
 
-    setComment(comment);
-
-    addFeedback();
+    // Store the commentInputRef value in local storage as "commentService"
+    localStorage.setItem("commentService", comment);
 
     // Clear the input value
     if (commentInputRef.current) {
-      // commentInputRef.current.value = "";
+      commentInputRef.current.value = "";
     }
 
     // Close the popup
     closePopup();
-    navigate("/thankyou");
   };
 
   return (
@@ -64,7 +56,6 @@ const CommentCard = () => {
           </div>
         </div>
       </div>
-
       {isPopupOpen && (
         <div className="popup">
           <form className="popup-container" onSubmit={handleSubmit}>
@@ -73,8 +64,6 @@ const CommentCard = () => {
               type="text"
               placeholder="Your comment here..."
               ref={commentInputRef}
-              // value={userComment}
-              // onChange={handleUserInput}
             />
             <Button type="submit" version="primary" btnText="Save" />
             <Button onClick={closePopup} version="secondary" btnText="Cancel" />
@@ -85,4 +74,4 @@ const CommentCard = () => {
   );
 };
 
-export default CommentCard;
+export default CommentService;

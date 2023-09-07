@@ -9,7 +9,7 @@ class FeedbackService {
   }
 
   static async createOneFeedback(
-    businessID: string,
+    businessSlug: string,
     emoji_service: string,
     comment_service: string,
     tags_service: string[],
@@ -18,7 +18,7 @@ class FeedbackService {
     tags_order: string[]
   ): Promise<IFeedbackDocument> {
     const feedback = new Feedback({
-      businessID,
+      businessSlug,
       emoji_service,
       comment_service,
       tags_service,

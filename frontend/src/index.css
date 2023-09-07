@@ -219,28 +219,6 @@ img {
   text-align: center;
 }
 
-.comment-tags {
-  display: flex;
-  flex-wrap: wrap;
-  width: fit-content;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-}
-
-.comment-tags li {
-  display: flex;
-}
-
-.comment-tags label {
-  display: flex;
-  align-items: center;
-  background-color: #feecec;
-  color: #ff3637;
-  margin: 2px;
-}
-
 .card {
   padding: 8px;
   border-radius: 15px;
@@ -313,18 +291,6 @@ img {
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-}
-
-.tags {
-  margin-bottom: 10px;
-}
-
-.tags-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 5px;
-  margin: 10px;
 }
 
 /* Media query for small screen */
