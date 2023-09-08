@@ -1,21 +1,14 @@
 import "./dashboardLogin.css";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
+import { User } from "../../types/auth.types";
 import axios from "axios";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
+import { useAuthenticate } from "../../hooks/useAuthenticate";
+import { useNavigate } from "react-router-dom";
 
 const API_BASE_URL = "https://munchi-merchant-dev-api-ydtudzlala-lz.a.run.app";
-
-interface User {
-  email: string;
-  firstName: string;
-  lastName: string;
-  level: string;
-  publicId: string;
-  verifyToken: string;
-  refreshToken: string;
-}
 
 interface ApiResponse {
   data: User | null; // Provide a default type of null for data
@@ -26,12 +19,13 @@ interface ApiResponse {
 function App() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const { login } = useAuthenticate();
   const [response, setResponse] = useState<ApiResponse>({
     data: null,
     loading: false,
     error: null,
   });
-  const { setUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,9 +42,8 @@ function App() {
             password,
           },
         });
-
+        login(result.data);
         setResponse({ data: result.data, loading: false, error: null });
-        setUser(result.data);
       } catch (error: any) {
         setResponse({ data: null, loading: false, error });
       }
@@ -59,6 +52,7 @@ function App() {
 
   return (
     <div className="container">
+      <h2>Dashboard Manager</h2>
       <form className="login-form" onSubmit={handleLogin}>
         <label className="label">Email</label>
         <input

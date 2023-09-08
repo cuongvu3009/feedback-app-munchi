@@ -1,26 +1,10 @@
+import { AuthContextType, AuthProviderProps, User } from "../types/auth.types";
 // AuthContext.tsx
-import React, { ReactNode, createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
-interface User {
-  email: string;
-  firstName: string;
-  lastName: string;
-  level: string;
-  publicId: string;
-  verifyToken: string;
-  refreshToken: string;
-}
-
-// Define the context and its initial value (null)
-interface AuthContextType {
-  user: User | null;
-  setUser: (user: User | null) => void;
-}
-
-// Create the AuthContext
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const useAuth = () => {
+export const useAuthContext = () => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
@@ -28,15 +12,12 @@ export const useAuth = () => {
   return context;
 };
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const isLoggedIn = !!user; // Determine if the user is logged in
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, isLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );

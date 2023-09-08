@@ -7,12 +7,13 @@ import FeedbackOrder from "./pages/feedback/FeedbackOrder";
 import FeedbackService from "./pages/feedback/FeedbackService";
 import NotFound from "./pages/NotFound";
 import SuccessFeedback from "./pages/successFeedback/SuccessFeedback";
+import { useAuthContext } from "./context/AuthContext";
 
 function App() {
+  const { isLoggedIn } = useAuthContext();
   return (
     <Router>
       <Routes>
-        <Route path="*" element={<NotFound />} />
         {/* Feedback */}
         <Route path="/" element={<FeedbackService />} />
         <Route path="/order-feedback" element={<FeedbackOrder />} />
@@ -20,8 +21,15 @@ function App() {
         <Route path="/endfeedback" element={<EndFeedBack />} />
 
         {/* dashboard */}
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/login" element={<DashboardLogin />} />
+
+        {isLoggedIn ? (
+          <Route path="/dashboard" element={<Dashboard />} />
+        ) : (
+          <Route path="/dashboard/login" element={<DashboardLogin />} />
+        )}
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
