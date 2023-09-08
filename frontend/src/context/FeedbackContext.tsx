@@ -1,5 +1,5 @@
 import { Feedback, FeedbackContextProps } from "../types/feedback.types";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import axios from "axios";
 import { constantAPI } from "../utils/constantAPI";
@@ -12,6 +12,14 @@ const FeedbackContext = createContext<FeedbackContextProps>({
     throw new Error("Function not implemented.");
   },
 });
+
+export const useFeedbackContext = () => {
+  const context = useContext(FeedbackContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an FeedbackProvider");
+  }
+  return context;
+};
 
 export const FeedbackProvider = ({ children }: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -40,7 +48,6 @@ export const FeedbackProvider = ({ children }: any) => {
     <FeedbackContext.Provider
       value={{
         isLoading,
-
         feedback,
         selectedTip,
         setSelectedTip,

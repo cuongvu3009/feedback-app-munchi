@@ -4,7 +4,7 @@ import Button from "../shared/Button";
 import FeedbackContext from "../../context/FeedbackContext";
 import moment from "moment";
 
-const DashboardContent = () => {
+const DashboardInfo = () => {
   const { feedback } = useContext(FeedbackContext);
   const [feedbackLimit, setFeedbackLimit] = useState<number>(7);
 
@@ -86,4 +86,4 @@ const DashboardContent = () => {
   );
 };
 
-export default DashboardContent;
+export default DashboardInfo;

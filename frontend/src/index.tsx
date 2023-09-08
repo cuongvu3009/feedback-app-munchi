@@ -1,6 +1,7 @@
 import "./index.css";
 
 import App from "./App";
+import { AuthProvider } from "./context/AuthContext";
 //	stripe
 import { Elements } from "@stripe/react-stripe-js";
 import { FeedbackProvider } from "./context/FeedbackContext";
@@ -18,9 +19,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <FeedbackProvider>
-      <Elements stripe={stripePromise}>
-        <App />
-      </Elements>
+      <AuthProvider>
+        <Elements stripe={stripePromise}>
+          <App />
+        </Elements>
+      </AuthProvider>
     </FeedbackProvider>
   </React.StrictMode>
 );

@@ -1,15 +1,15 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useContext } from "react";
 
-import FeedbackContext from "../context/FeedbackContext";
 import axios from "axios";
+import { useFeedbackContext } from "../context/FeedbackContext";
 import { useNavigate } from "react-router-dom";
 
 const CheckoutForm: React.FC = () => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
-  const { selectedTip } = useContext(FeedbackContext);
+  const { selectedTip } = useFeedbackContext();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
