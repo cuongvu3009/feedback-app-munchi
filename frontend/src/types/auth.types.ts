@@ -13,7 +13,7 @@ export interface User {
 export interface AuthContextType {
   user: User | null;
   setUser: (user: User | null) => void;
-  isLoggedIn: boolean;
+  userIsLoggedIn: boolean;
 }
 
 export interface AuthProviderProps {

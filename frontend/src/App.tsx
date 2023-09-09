@@ -1,4 +1,9 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from "react-router-dom";
 
 import Dashboard from "./pages/dashboard/Dashboard";
 import DashboardLogin from "./pages/dashboard/DashboardLogin";
@@ -10,7 +15,9 @@ import SuccessFeedback from "./pages/successFeedback/SuccessFeedback";
 import { useAuthContext } from "./context/AuthContext";
 
 function App() {
-  const { isLoggedIn } = useAuthContext();
+  // const { user } = useAuthContext();
+  const { user } = useAuthContext();
+
   return (
     <Router>
       <Routes>
@@ -20,14 +27,21 @@ function App() {
         <Route path="/feedbacksent" element={<SuccessFeedback />} />
         <Route path="/endfeedback" element={<EndFeedBack />} />
 
-        {/* dashboard */}
-        <Route path="/dashboard/login" element={<DashboardLogin />} />
+        {/* Dashboard */}
 
-        {isLoggedIn ? (
-          <Route path="/dashboard" element={<Dashboard />} />
-        ) : (
-          <Route path="/dashboard/login" element={<DashboardLogin />} />
-        )}
+        <Route
+          path="/dashboard/login"
+          element={
+            !user ? <DashboardLogin /> : <Navigate to="/dashboard" replace />
+          }
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            user ? <Dashboard /> : <Navigate to="/dashboard/login" replace />
+          }
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

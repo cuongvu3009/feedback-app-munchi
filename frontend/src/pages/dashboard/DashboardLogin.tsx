@@ -1,10 +1,9 @@
 import "./dashboardLogin.css";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { User } from "../../types/auth.types";
 import axios from "axios";
-import { useAuthContext } from "../../context/AuthContext";
 import { useAuthenticate } from "../../hooks/useAuthenticate";
 import { useNavigate } from "react-router-dom";
 
@@ -42,6 +41,7 @@ function App() {
             password,
           },
         });
+
         login(result.data);
         setResponse({ data: result.data, loading: false, error: null });
       } catch (error: any) {

@@ -14,10 +14,10 @@ export const useAuthContext = () => {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const isLoggedIn = !!user; // Determine if the user is logged in
+  const userIsLoggedIn = !!user;
 
   return (
-    <AuthContext.Provider value={{ user, setUser, isLoggedIn }}>
+    <AuthContext.Provider value={{ user, setUser, userIsLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );
