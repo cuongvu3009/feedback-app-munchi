@@ -68,6 +68,10 @@ img {
   font-size: 20px;
 }
 
+.red-text {
+  color: #ff3537;
+  font-weight: bold;
+}
 .rating {
   display: flex;
   justify-content: center;
