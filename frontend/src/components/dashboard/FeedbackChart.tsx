@@ -9,6 +9,7 @@ import {
 } from "recharts";
 
 import React from "react";
+import styles from "./feedbackChart.module.css";
 
 interface ReactionDataPoint {
   reaction: string;
@@ -27,7 +28,7 @@ const FeedbackChart: React.FC<FeedbackChartProps> = ({ data }) => {
   const tickInterval = Math.ceil(maxQuantity / 10); // Adjust 10 to suit your needs
 
   return (
-    <div className="chart-container">
+    <div className={`${styles["chart-container"]}`}>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />

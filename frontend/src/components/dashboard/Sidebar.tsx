@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
     logout();
   };
   return (
-    <div className={`${styles["sidebar"]}`}>
+    <div className="sidebar">
       <div className={`${styles["sidebar-top"]}`}>
         <div className={`${styles["logo-container"]}`}>
           <div className={`${styles["logo"]}`}></div>

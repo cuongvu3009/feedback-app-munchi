@@ -7,6 +7,7 @@ import {
 
 import Dashboard from "./pages/dashboard/Dashboard";
 import DashboardLogin from "./pages/dashboard/DashboardLogin";
+import DashboardResponses from "./components/dashboard/DashboardResponses";
 import EndFeedBack from "./pages/endFeedBack/EndFeedBack";
 import FeedbackOrder from "./pages/feedback/FeedbackOrder";
 import FeedbackService from "./pages/feedback/FeedbackService";
@@ -42,6 +43,22 @@ function App() {
             user ? <Dashboard /> : <Navigate to="/dashboard/login" replace />
           }
         />
+        <Route
+          path="/dashboard/responses"
+          element={
+            user ? (
+              <DashboardResponses />
+            ) : (
+              <Navigate to="/dashboard/login" replace />
+            )
+          }
+        />
+        {/* <Route
+          path="/dashboard/settings"
+          element={
+            user ? <DashboardSettings /> : <Navigate to="/dashboard/login" replace />
+          }
+        /> */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>
