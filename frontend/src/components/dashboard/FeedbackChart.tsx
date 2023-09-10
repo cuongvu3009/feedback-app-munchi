@@ -1,7 +1,7 @@
 import {
-  Bar,
-  BarChart,
   CartesianGrid,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -9,45 +9,83 @@ import {
 } from "recharts";
 
 import React from "react";
-import styles from "./feedbackChart.module.css";
 
-interface ReactionDataPoint {
-  reaction: string;
-  quantity: number;
+interface DataPoint {
+  _id: string;
+  businessSlug: string;
+  emoji_service: string;
+  emoji_order: string;
+  createdAt: string;
 }
 
-interface FeedbackChartProps {
-  data: ReactionDataPoint[];
+interface LineChartProps {
+  data: DataPoint[];
+  type: "service" | "order";
 }
 
-const FeedbackChart: React.FC<FeedbackChartProps> = ({ data }) => {
-  // Find the maximum quantity in the data
-  const maxQuantity = Math.max(...data.map((entry) => entry.quantity));
+interface ChartData {
+  [date: string]: {
+    date: string;
+    totalScore: number;
+    count: number;
+  };
+}
 
-  // Calculate the tick interval based on the maximum quantity
-  const tickInterval = Math.ceil(maxQuantity / 10); // Adjust 10 to suit your needs
+const mapEmojiToScore = (emoji: string): number => {
+  switch (emoji) {
+    case "terrible":
+      return 1;
+    case "bad":
+      return 2;
+    case "okey":
+      return 3;
+    case "good":
+      return 4;
+    case "awesome":
+      return 5;
+    default:
+      return 0; // Handle unknown values as needed
+  }
+};
+
+const formatAverageScore = (value: number): string => {
+  return value.toFixed(1);
+};
+
+const LineChartComponent: React.FC<LineChartProps> = ({ data, type }) => {
+  // Group data by date and calculate average score
+  const chartData: ChartData = data.reduce((acc, entry) => {
+    const date = new Date(entry.createdAt).toLocaleDateString();
+    if (!acc[date]) {
+      acc[date] = { date, totalScore: 0, count: 0 };
+    }
+    const score =
+      type === "service"
+        ? mapEmojiToScore(entry.emoji_service)
+        : mapEmojiToScore(entry.emoji_order);
+    acc[date].totalScore += score;
+    acc[date].count += 1;
+    return acc;
+  }, {} as ChartData);
+
+  // Convert grouped data into an array
+  const finalChartData = Object.values(chartData).map((entry) => ({
+    date: entry.date,
+    averageScore: entry.totalScore / entry.count,
+  }));
 
   return (
-    <div className={`${styles["chart-container"]}`}>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="reaction" />
-          <YAxis
-            dataKey="quantity of reaction"
-            domain={[0, maxQuantity + tickInterval]}
-            ticks={[
-              ...Array(
-                Math.ceil((maxQuantity + tickInterval) / tickInterval)
-              ).keys(),
-            ].map((tick) => tick * tickInterval)}
-          />
-          <Tooltip />
-          <Bar dataKey="quantity" fill="#8884d8" minPointSize={1} />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart data={finalChartData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} />{" "}
+        {/* Adjust the domain and ticks */}
+        <Tooltip formatter={(value: number) => formatAverageScore(value)} />
+        <Line type="monotone" dataKey="averageScore" stroke="#8884d8" />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 
-export default FeedbackChart;
+export default LineChartComponent;

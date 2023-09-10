@@ -1,18 +1,10 @@
 import DashboardResponses from "./DashboardResponses";
 import DashboardScore from "./DashboardScore";
 import FeedbackChart from "./FeedbackChart";
+import { data } from "./data";
 import styles from "./dashboardInfo.module.css";
 
 const DashboardInfo = () => {
-  const data = [
-    { reaction: "okey", quantity: 100 },
-    { reaction: "okey", quantity: 100 },
-    { reaction: "okey", quantity: 100 },
-    { reaction: "okey", quantity: 100 },
-    { reaction: "okey", quantity: 100 },
-    { reaction: "okey", quantity: 100 },
-  ];
-
   return (
     <div className="dashboard-info">
       <div className={`${styles["dashboard-content"]}`}>
@@ -20,7 +12,14 @@ const DashboardInfo = () => {
         <DashboardResponses />
       </div>
       <div className={`${styles["dashboard-chart"]}`}>
-        <FeedbackChart data={data} />
+        <div className={`${styles["chart"]}`}>
+          <h4>Service feedback</h4>
+          <FeedbackChart data={data} type="service" />
+        </div>
+        <h4>Order feedback</h4>
+        <div className={`${styles["chart"]}`}>
+          <FeedbackChart data={data} type="order" />
+        </div>
       </div>
     </div>
   );

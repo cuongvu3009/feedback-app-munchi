@@ -1,0 +1,88 @@
+export const data = [
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "good",
+    "emoji_order": "bad",
+    "createdAt": "2023-09-01T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "okey",
+    "emoji_order": "okey",
+
+    "createdAt": "2023-09-01T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "good",
+    "emoji_order": "bad",
+    "createdAt": "2023-09-02T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "okey",
+    "emoji_order": "terrible",
+    "createdAt": "2023-09-03T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "good",
+    "emoji_order": "bad",
+    "createdAt": "2023-09-03T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "bad",
+    "emoji_order": "okey",
+    "createdAt": "2023-09-04T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "awesome",
+    "emoji_order": "bad",
+    "createdAt": "2023-09-04T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "awesome",
+    "emoji_order": "awesome",
+    "createdAt": "2023-09-04T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "bad",
+    "emoji_order": "bad",
+    "createdAt": "2023-09-06T19:26:43.159Z",
+  },
+
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "terrible",
+    "emoji_order": "awesome",
+    "createdAt": "2023-09-06T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "okey",
+    "emoji_order": "bad",
+    "createdAt": "2023-09-07T19:26:43.159Z",
+  },
+  {
+    "_id": "64fa23f35ee0101ee10f26d7",
+    "businessSlug": "sushiDaily",
+    "emoji_service": "bad",
+    "emoji_order": "terrible",
+    "createdAt": "2023-09-08T19:26:43.159Z",
+  },
+];
