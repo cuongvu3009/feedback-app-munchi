@@ -8,7 +8,8 @@ const DashboardInfo = () => {
   return (
     <div className="dashboard-info">
       <div className={`${styles["dashboard-content"]}`}>
-        <DashboardScore />
+        <DashboardScore type="order" data={data} />
+        <DashboardScore type="service" data={data} />
         <DashboardResponses />
       </div>
       <div className={`${styles["dashboard-chart"]}`}>

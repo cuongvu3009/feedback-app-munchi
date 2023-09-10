@@ -31,7 +31,7 @@ interface ChartData {
   };
 }
 
-const mapEmojiToScore = (emoji: string): number => {
+const mapEmojiToScore = (emoji: string, type: "service" | "order"): number => {
   switch (emoji) {
     case "terrible":
       return 1;
@@ -48,21 +48,30 @@ const mapEmojiToScore = (emoji: string): number => {
   }
 };
 
+const formatDate = (dateString: string): string => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  };
+  return new Date(dateString).toLocaleDateString(undefined, options);
+};
+
 const formatAverageScore = (value: number): string => {
   return value.toFixed(1);
 };
 
 const LineChartComponent: React.FC<LineChartProps> = ({ data, type }) => {
-  // Group data by date and calculate average score
+  // Group data by date and calculate average score based on the 'type'
   const chartData: ChartData = data.reduce((acc, entry) => {
-    const date = new Date(entry.createdAt).toLocaleDateString();
+    const date = formatDate(entry.createdAt);
     if (!acc[date]) {
       acc[date] = { date, totalScore: 0, count: 0 };
     }
     const score =
       type === "service"
-        ? mapEmojiToScore(entry.emoji_service)
-        : mapEmojiToScore(entry.emoji_order);
+        ? mapEmojiToScore(entry.emoji_service, type)
+        : mapEmojiToScore(entry.emoji_order, type);
     acc[date].totalScore += score;
     acc[date].count += 1;
     return acc;
