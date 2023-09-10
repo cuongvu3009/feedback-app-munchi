@@ -7,11 +7,11 @@ import {
 
 import Dashboard from "./pages/dashboard/Dashboard";
 import DashboardLogin from "./pages/dashboard/DashboardLogin";
-import DashboardResponses from "./components/dashboard/DashboardResponses";
 import EndFeedBack from "./pages/endFeedBack/EndFeedBack";
 import FeedbackOrder from "./pages/feedback/FeedbackOrder";
 import FeedbackService from "./pages/feedback/FeedbackService";
 import NotFound from "./pages/NotFound";
+import Responses from "./pages/dashboard/Responses";
 import SuccessFeedback from "./pages/successFeedback/SuccessFeedback";
 import { useAuthContext } from "./context/AuthContext";
 
@@ -46,11 +46,7 @@ function App() {
         <Route
           path="/dashboard/responses"
           element={
-            user ? (
-              <DashboardResponses />
-            ) : (
-              <Navigate to="/dashboard/login" replace />
-            )
+            user ? <Responses /> : <Navigate to="/dashboard/login" replace />
           }
         />
         {/* <Route
