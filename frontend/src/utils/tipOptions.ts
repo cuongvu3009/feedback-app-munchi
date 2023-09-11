@@ -2,7 +2,7 @@ export const tipOptions = [
   {
     text: "2€",
     value: 2,
-    symbol: "😍",
+    symbol: "😄",
   },
   {
     text: "3€",
@@ -12,7 +12,7 @@ export const tipOptions = [
   {
     text: "5€",
     value: 5,
-    symbol: "👏",
+    symbol: "😍",
   },
-  { text: "other", value: 99, symbol: "🧩" },
+  { text: "other", value: 99, symbol: " " },
 ];

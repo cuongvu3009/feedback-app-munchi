@@ -62,19 +62,15 @@ const SuccessFeedback = () => {
         {selectedTip ? (
           <PaymentButton
             btnVersion="full"
-            btnText="Pay"
+            btnText="Give tip"
             paymentLink={getLinkByTip(selectedTip)}
           />
         ) : (
-          <Button
-            version="secondary"
-            btnText="Submit another feedback"
-            onClick={() => navigate("/")}
-          />
+          <Button isDisabled={true} version="full" btnText="Give tip" />
         )}
         <Button
           version="normal"
-          btnText="No, I do not want to support"
+          btnText="No, thank you"
           onClick={() => navigate("/")}
         />
         <TradeMark />
