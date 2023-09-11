@@ -1,10 +1,11 @@
 import React from "react";
+import munchi from "../assets/munchiLogo.png";
 
-const TradeMark = () => {
+const TradeMark: React.FC = () => {
   return (
-    <p>
-      Powered by <span className="red-text">munchi</span>
-    </p>
+    <div className="munchi-logo flex">
+      <img src={munchi} alt="munchi-logo" />
+    </div>
   );
 };
 
