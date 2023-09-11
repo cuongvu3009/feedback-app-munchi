@@ -1,6 +1,5 @@
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import LogoFlex from "../shared/LogoFlex";
 import Momotoko from "../assets/MomotokoLogo.png";
 import React from "react";
 import TradeMark from "../shared/TradeMark";
