@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  border: 1.5px groove #f3f3f3;
 }
 
 .feedback-wrapper {

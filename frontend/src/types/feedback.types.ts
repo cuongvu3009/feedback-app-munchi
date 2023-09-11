@@ -13,7 +13,7 @@ export interface FeedbackContextProps {
 }
 
 export interface ButtonProps {
-  version?: "primary" | "secondary" | "full";
+  version?: "primary" | "secondary" | "full" | "normal";
   type?: "submit" | "button" | "reset";
   isDisabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -21,7 +21,7 @@ export interface ButtonProps {
 }
 
 export interface EmojiProps {
-  symbol: string;
+  symbol: any;
   label: string;
   size: number;
 }

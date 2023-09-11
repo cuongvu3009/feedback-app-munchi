@@ -1,5 +1,4 @@
 export const tipOptions = [
-  { text: "0€", value: 0, symbol: "😄", paymentLink: "" },
   {
     text: "2€",
     value: 2,
@@ -15,4 +14,5 @@ export const tipOptions = [
     value: 5,
     symbol: "👏",
   },
+  { text: "other", value: 99, symbol: "🧩" },
 ];

@@ -8,8 +8,6 @@ import {
   YAxis,
 } from "recharts";
 
-import React from "react";
-
 interface DataPoint {
   _id: string;
   businessSlug: string;

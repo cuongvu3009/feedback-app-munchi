@@ -58,13 +58,6 @@ const SuccessFeedback = () => {
         </ul>
       </div>
 
-      {/* getLinkByTip(0) will return default case because it does not exist in switch condition, user will get a link where tip amount is up to them */}
-      <PaymentButton
-        btnVersion="secondary"
-        btnText="Choose other amount"
-        paymentLink={getLinkByTip(0)}
-      />
-
       <div className="navigation">
         {selectedTip ? (
           <PaymentButton
@@ -79,7 +72,11 @@ const SuccessFeedback = () => {
             onClick={() => navigate("/")}
           />
         )}
-
+        <Button
+          version="normal"
+          btnText="No, I do not want to support"
+          onClick={() => navigate("/")}
+        />
         <TradeMark />
       </div>
     </div>
