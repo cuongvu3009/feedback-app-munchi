@@ -1,7 +1,7 @@
 import "./dashboard.css";
 
 import DashboardInfo from "../../components/dashboard/DashboardInfo";
-import FeedbackChart from "../../components/dashboard/FeedbackChart";
+import React from "react";
 import Sidebar from "../../components/dashboard/Sidebar";
 
 const Dashboard = () => {

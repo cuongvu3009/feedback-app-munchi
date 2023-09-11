@@ -103,7 +103,7 @@ const DashboardScore: React.FC<DashboardScoreProps> = ({ type, data }) => {
     <div className={`${styles["dashboard-card"]}`}>
       <h3>Average score {type}</h3>
       <div className={`${styles["dashboard-score"]}`}>
-        <span className={`${styles["score"]}`}>{averageScore}</span>
+        <span className={styles.score}>{averageScore}</span>
       </div>
 
       <div className={`${styles["dashboard-answers"]}`}>

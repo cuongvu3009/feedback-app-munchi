@@ -1,6 +1,7 @@
 import DashboardResponses from "./DashboardResponses";
 import DashboardScore from "./DashboardScore";
 import FeedbackChart from "./FeedbackChart";
+import React from "react";
 import { data } from "./data";
 import styles from "./dashboardInfo.module.css";
 

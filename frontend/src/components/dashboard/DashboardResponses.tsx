@@ -1,4 +1,5 @@
 import Button from "../shared/Button";
+import React from "react";
 import { data } from "./data";
 import moment from "moment";
 import styles from "./dashboardResponses.module.css";
