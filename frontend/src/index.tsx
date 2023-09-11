@@ -7,6 +7,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { FeedbackProvider } from "./context/FeedbackContext";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { SidebarProvider } from "./context/SidebarContext";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
@@ -19,11 +20,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <FeedbackProvider>
-      <AuthProvider>
-        <Elements stripe={stripePromise}>
-          <App />
-        </Elements>
-      </AuthProvider>
+      <SidebarProvider>
+        <AuthProvider>
+          <Elements stripe={stripePromise}>
+            <App />
+          </Elements>
+        </AuthProvider>
+      </SidebarProvider>
     </FeedbackProvider>
   </React.StrictMode>
 );
