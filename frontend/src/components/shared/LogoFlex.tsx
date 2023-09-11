@@ -1,8 +1,8 @@
 import MomotokoLogo from "../assets/MomotokoLogo.png";
 
-const Logo = () => {
+const LogoFlex = () => {
   return (
-    <div className="logo-container">
+    <div className="flex">
       <div className="logo">
         <img src={MomotokoLogo} alt="MomotokoLogo" />
       </div>
@@ -11,4 +11,4 @@ const Logo = () => {
   );
 };
 
-export default Logo;
+export default LogoFlex;

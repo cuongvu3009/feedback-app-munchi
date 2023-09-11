@@ -1,5 +1,7 @@
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import LogoFlex from "../shared/LogoFlex";
+import Momotoko from "../assets/MomotokoLogo.png";
 import React from "react";
 import TradeMark from "../shared/TradeMark";
 import styles from "./sidebar.module.css";
@@ -15,8 +17,9 @@ const Sidebar: React.FC = () => {
     <div className="sidebar">
       <div className={`${styles["sidebar-top"]}`}>
         <div className={`${styles["logo-container"]}`}>
-          <div className={`${styles["logo"]}`}></div>
-          <h3>Juicy Burger</h3>
+          {/* <div className={`${styles["logo"]}`}></div> */}
+          <img src={Momotoko} alt="Momotoko" className={styles.logo} />
+          <h3>Momotoko</h3>
         </div>
         <Link to="/dashboard" className={`${styles["sidebar-link"]}`}>
           Dashboard
